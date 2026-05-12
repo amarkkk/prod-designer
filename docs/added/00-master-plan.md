@@ -8,8 +8,8 @@ Established 2026-05-12. Session 1 onboarding and planning.
 2. Read `docs/added/guardrails.md` — every design decision must be checked against it.
 3. Check the **Progress** section below to find the next `[ ]` chapter.
 4. Read the chapter's description for scope and expected output files.
-5. For user context and preferences, see `docs/added/MEMORY.md` which indexes all context files.
-6. The HTML artifact is at `the-ledger.html` (repo root). The original design document is at `docs/original/DESIGN.md`.
+5. Read `docs/added/_index.md` for the full documentation map — it links to all reference docs, context files, and review checklists.
+6. The HTML artifact is at `the-ledger.html` (repo root). The original design document is at `docs/original/DESIGN.md`. The task description is at `docs/original/test-assignment.md`.
 
 Do not duplicate work from completed chapters. Do not read the design system book chapters (Obsidian vault) until Phase 1 — they are for Figma construction methodology, not planning.
 
@@ -58,8 +58,9 @@ Full guardrails extracted to `docs/added/guardrails.md`. All design decisions mu
 | Reference Figma (portfolio) | https://www.figma.com/design/AQQOxpMnwqrL8ZilRo3jPr/amark.design-2026--32px-vertical-grid- |
 | HTML artifact | `the-ledger.html` (repo root) |
 | Design document | `docs/original/DESIGN.md` |
-| Test assignment | `docs/original/AI-First Product Designer - Test Assignment.pdf` |
-| Design System Book Ch 4–7, 10 | Local Obsidian vault (see memory/reference_figma.md for paths) |
+| Test assignment (PDF) | `docs/original/AI-First Product Designer - Test Assignment.pdf` |
+| Test assignment (markdown) | `docs/original/test-assignment.md` |
+| Design System Book Ch 4–7, 10 | Local Obsidian vault (see `docs/added/context/figma-references.md` for paths) |
 
 ---
 
@@ -79,7 +80,7 @@ Each chapter produces a session log in `docs/added/sessions/` and any output doc
 - Document findings and decisions
 - Output: `docs/added/00-master-plan.md`, `docs/added/guardrails.md`, `docs/added/project-decisions.md`
 
-#### `[ ]` Ch 0.2: Token extraction & component catalog
+#### `[x]` Ch 0.2: Token extraction & component catalog
 Extract from HTML without testing:
 - All CSS custom properties (colors, spacing, sizing, timing)
 - oklch → hex conversion for all color tokens
@@ -87,35 +88,30 @@ Extract from HTML without testing:
 - All spacing values (padding, margin, gap) — identify scale patterns and outliers
 - Catalog every distinct component type with its HTML class name
 - Map interactive states visible in CSS (hover, focus, checked, active, transitions)
-- Output: `docs/added/01-token-extraction.md`, `docs/added/02-component-catalog.md`
+- Output: `docs/added/reference/01-token-extraction.md`, `docs/added/reference/02-component-catalog.md`
 
-#### `[ ]` Ch 0.3: Quick accessibility scan
+#### `[x]` Ch 0.3: Quick accessibility scan
 Lightweight, focused on what informs component design:
 - Tab order and focusability of interactive elements
 - Focus state indicators (present? styled? visible?)
 - ARIA attributes inventory (what exists, what's missing)
 - Keyboard interaction model (what works, what doesn't)
 - This feeds into which states must be designed into Figma components
-- Output: findings folded into `docs/added/02-component-catalog.md`
+- Output: findings folded into `docs/added/reference/02-component-catalog.md`
 
 ### Phase 1 — Design system foundation
 
-#### `[ ]` Ch 1.1: Design system book chapter digestion
-Read chapters 4 (Accessibility), 5 (Responsiveness), 6 (Component Anatomy), 7 (Design Tokens), 10 (Typography). Extract actionable takeaways specific to this project — naming conventions, token structure, component anatomy patterns, accessibility requirements.
-- Output: `docs/added/03-design-system-principles.md`
+#### `[x]` Ch 1.1: Design system book chapter digestion
+Read chapters 4 (Accessibility), 5 (Responsiveness), 6 (Component Anatomy), 7 (Design Tokens), 10 (Typography). Extract actionable takeaways specific to this project — naming conventions, token structure, component anatomy patterns, Figma component building methodology.
+- Output: `docs/added/reference/03-design-system-principles.md`
 
-#### `[ ]` Ch 1.2: Token normalization & Figma variables
-- Normalize extracted tokens: round inconsistent values to a coherent scale
-- Define spacing scale (micro, meso, macro — which scale, which don't)
-- Define typography scale with clamp audit at chosen breakpoints
-- Create Figma variables with scoped naming
-- Note: only the "proposed" Figma page gets the variable system. "As-is" uses raw values.
-- Output: Figma variables in the working file
+### Phase 2 — Figma construction (Page 1 — as-is)
 
-### Phase 2 — Figma construction
+Faithful recreation using Figma color styles and text styles under `as-is/` folders — no Figma variables, no normalization. Component building follows `reference/03-design-system-principles.md` section 6 (structural principles, naming, anatomy). Styles defined in `reference/03-design-system-principles.md` section 6 "As-is Figma styles." User reviews atoms before proceeding to molecules. Review against `review/figma-component-checklist.md`.
 
 #### `[ ]` Ch 2.1: Atoms (Page 1 — as-is)
 Buttons (primary, ghost, link-action, icon), chips, tabs, badges/pills, input field, hairlines/rules, typography samples, status indicators (dots, arrows, trends). Built with raw values matching the HTML exactly.
+- User review gate: atoms approved before proceeding to Ch 2.2.
 
 #### `[ ]` Ch 2.2: Molecules (Page 1 — as-is)
 Section header, KPI row, ledger table row, budget bar row, goal card, coach note, account list item, nav item, notice row, marginalia, legend, hero delta, hero split cell
@@ -123,42 +119,52 @@ Section header, KPI row, ledger table row, budget bar row, goal card, coach note
 #### `[ ]` Ch 2.3: Organisms & full mockup (Page 1 — as-is)
 Sidebar, topbar, status bar, hero section, cashflow + distribution, ledger + budgets, goals grid, coach grid, notices feed. Assemble into full dashboard mockup.
 
-### Phase 3 — Task deliverables (Page 2 — proposed)
+### Phase 3 — Token normalization & proposed page setup
 
-#### `[ ]` Ch 3.1: Quick-create menu (+New)
+#### `[ ]` Ch 3.1: Token normalization & Figma variables
+- Normalize extracted tokens: round inconsistent values to a coherent scale
+- Define spacing scale (micro, meso, macro — which scale, which don't)
+- Define typography scale with clamp audit at chosen breakpoints
+- Create Figma variables with scoped naming
+- Only the "proposed" Figma page gets the variable system.
+- Output: Figma variables in the working file
+
+### Phase 4 — Task deliverables (Page 2 — proposed)
+
+#### `[ ]` Ch 4.1: Quick-create menu (+New)
 - Dropdown anatomy, hierarchy, hover/focus states
 - 5 flow first screens: new entry, new transfer, new goal, new category, connect account
 - Pattern decisions: which flows are modals, side-sheets, inline, or separate pages
 - 1 confirmation/success state (pick the most interesting flow)
 
-#### `[ ]` Ch 3.2: Search / Command palette
+#### `[ ]` Ch 4.2: Search / Command palette
 - Default state, typing with mixed results, empty state
 - Keyboard navigation model
 - Quick-create entries in search results
 - Autocomplete behavior
 
-#### `[ ]` Ch 3.3: Fix what's broken
+#### `[ ]` Ch 4.3: Fix what's broken
 - Group findings into themes
 - Before/after for 1–2 representative issues per theme
 - Conscious not-fixed items with rationale
 - Apply fixes to Figma mockup (Page 2)
 
-### Phase 4 — Prototype & testing
+### Phase 5 — Prototype & testing
 
-#### `[ ]` Ch 4.1: HTML prototype updates
-- Apply visual fixes from Ch 3.3 to `the-ledger.html`
+#### `[ ]` Ch 5.1: HTML prototype updates
+- Apply visual fixes from Ch 4.3 to `the-ledger.html`
 - Static states for +New menu and search
 - Verify font/color/spacing match Figma intent
 
-#### `[ ]` Ch 4.2: Playwright verification
+#### `[ ]` Ch 5.2: Playwright verification
 - Accessibility testing
 - Screenshot comparison at target breakpoints
 - Focus/tab order verification
 - Responsive behavior validation
 
-### Phase 5 — Wrap-up
+### Phase 6 — Wrap-up
 
-#### `[ ]` Ch 5.1: Final write-up & presentation prep
+#### `[ ]` Ch 6.1: Final write-up & presentation prep
 - Summary document with themed findings
 - Before/after showcase
 - Session chapter summaries for video

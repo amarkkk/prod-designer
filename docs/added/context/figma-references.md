@@ -6,6 +6,7 @@ originSessionId: 931ed20f-ae8b-4d7c-9455-6f6c203727cf
 ---
 - **Working file (The Ledger):** https://www.figma.com/design/5SxLdRVd3N0GKljJutwUb7/The-Ledger?node-id=0-1
 - **Reference file (amark.design portfolio):** https://www.figma.com/design/AQQOxpMnwqrL8ZilRo3jPr/amark.design-2026--32px-vertical-grid-?node-id=13962-402
+- **Reference button component (pattern to follow):** https://www.figma.com/design/AQQOxpMnwqrL8ZilRo3jPr/amark.design-2026--32px-vertical-grid-?node-id=20323-6421 — shows annotation, modularity, nesting, tokens, text property, variant axes, interactive states. Full analysis in `docs/added/reference/02-component-catalog.md` Appendix A.
 - **Design system book chapters (local):**
   - Ch 4 Accessibility: `/Users/amark/Documents/Obsidian Vaults/Work with Claude/amark.design (non-site)/Design System Book/v3/output/Chapter_04_Accessibility_v3-1.md`
   - Ch 5 Responsiveness: `...Chapter_05_Responsiveness_v3-3.md`
