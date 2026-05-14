@@ -20,7 +20,7 @@ Extracted from Ch 4.0 brainstorm (2026-05-13). Theme inventory for Figma executi
 
 ## Theme inventory
 
-All 7 themes get before/after treatment in Figma (Page 2 — proposed).
+All 8 themes get before/after treatment in Figma (Page 2 — proposed).
 
 ### Theme 1: Information architecture mismatch
 
@@ -163,13 +163,18 @@ Remove "Bills" (it's a KPI in May figures, not a section) and "Reports" (undefin
 
 ---
 
-## Fixed directly in HTML (no Figma before/after)
+### Theme 8: Keyboard shortcuts conflict with host platform
 
-### Keyboard shortcuts broken and conflicting with browser
+**Current:** The original prototype assigns ⌘N (New menu), ⌘T (Transfer), ⌘C (Category), ⌘A (Connect) as keyboard shortcuts. These collide with the host platform at two levels:
 
-**Before:** The `flowShortcutLabels` object used hardcoded `'C'` instead of the `⌘` modifier for 4 of 5 flow shortcuts. Labels displayed "C T", "C G", "C C", "C A" instead of "⌘ T", "⌘ G", "⌘ C", "⌘ A". The underlying mechanism was a C-prefix chord (press C, then a letter) rather than actual ⌘+letter shortcuts. Additionally, several original letter choices conflicted with browser or OS shortcuts that cannot be overridden.
+1. **Non-overridable browser-chrome shortcuts** — ⌘N (New Window) and ⌘T (New Tab) are processed by the browser before JavaScript can intercept them. `preventDefault()` has no effect. The browser action fires instead of the app action.
+2. **Sacred OS shortcuts** — ⌘C (Copy) and ⌘A (Select All) are fundamental clipboard/selection operations. Overriding them breaks user expectations regardless of whether the app runs in a browser, PWA, or standalone wrapper.
 
-**After:** All 7 keyboard shortcuts now use proper `⌘+letter` global handlers. Letters were remapped to avoid conflicts:
+The prototype also had an implementation bug: the JS rendered shortcut labels as "C T", "C G", "C C", "C A" (the letter C substituting for the ⌘ glyph) due to hardcoded strings instead of the platform-aware modifier variable.
+
+**The deeper issue:** The shortcut choices assume a standalone application context where the app owns the full keyboard. But we don't control the deployment target — the same HTML could run in a browser tab, a PWA, an Electron shell, or a mobile webview. Keyboard shortcuts must be platform-aware: avoid keys the host platform reserves, and degrade gracefully where keyboard input isn't the primary modality (touch devices, mobile).
+
+**Fix:** Remap all conflicting shortcuts to letters the browser and OS don't claim:
 
 | Action | Original | Remapped | Conflict avoided |
 |--------|----------|----------|-----------------|
@@ -178,7 +183,9 @@ Remove "Bills" (it's a KPI in May figures, not a section) and "Reports" (undefin
 | New category | ⌘C | ⌘J | OS Copy (sacred) |
 | Connect account | ⌘A | ⌘I | OS Select All (sacred) |
 
-⌘K (Search), ⌘E (Entry), and ⌘G (Goal) were kept — ⌘K and ⌘G are overridable browser shortcuts, and ⌘E has no browser conflict. The broken C-prefix chord system was removed entirely.
+⌘K (Search), ⌘E (Entry), and ⌘G (Goal) were kept — ⌘K and ⌘G are overridable browser shortcuts (Figma, VS Code override these), and ⌘E has no browser conflict. The broken C-prefix chord implementation was replaced with proper global `keydown` handlers.
+
+**Before/after:** Status bar showing `⌘ N` → `⌘ B`; dropdown menu showing `C T` / `C G` / `C C` / `C A` → `⌘ D` / `⌘ G` / `⌘ J` / `⌘ I`. Command palette shortcut badges updated to match.
 
 See [Ch 4.0 keyboard shortcuts decision](ch-4.0-phase4-brainstorm.md#keyboard-shortcuts-revised-2026-05-14) for full rationale.
 
