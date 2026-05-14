@@ -75,9 +75,9 @@ Default state, typing with mixed results, empty state, and keyboard interaction 
 
 ### Task 4: Fix what's broken
 
-Seven themes identified: information architecture mismatch, spacing inconsistency, typography readability, accessibility gaps, responsive progressive disclosure, UX writing, and visual consistency.
+Eight themes identified: information architecture mismatch, spacing inconsistency, typography readability, accessibility gaps, responsive progressive disclosure, UX writing, visual consistency, and keyboard shortcut conflicts with the host platform.
 
-- Theme inventory and rationale: [`docs/added/sessions/ch-4.3-fix-whats-broken.md`](docs/added/sessions/ch-4.3-fix-whats-broken.md) — seven themes with scoping, before/after specs, and conscious not-fixed decisions
+- Theme inventory and rationale: [`docs/added/sessions/ch-4.3-fix-whats-broken.md`](docs/added/sessions/ch-4.3-fix-whats-broken.md) — eight themes with scoping, before/after specs, and conscious not-fixed decisions
 - Figma: [Fix theme frames](https://www.figma.com/design/5SxLdRVd3N0GKljJutwUb7/The-Ledger?node-id=402-9016&t=jzEQMSyOLKx3jMFi-4) on the As-is page — the would-be Figma implementation. Absolutely failed output.
 - Design tokens as a structural fix: the entire [Proposed page](https://www.figma.com/design/5SxLdRVd3N0GKljJutwUb7/The-Ledger?node-id=249-2488) (Phase 3, Chapters 3.1–3.6) addresses spacing inconsistency and typographic scale as systemic fixes through a normalized token architecture
 
