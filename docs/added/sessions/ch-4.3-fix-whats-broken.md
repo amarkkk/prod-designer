@@ -163,6 +163,27 @@ Remove "Bills" (it's a KPI in May figures, not a section) and "Reports" (undefin
 
 ---
 
+## Fixed directly in HTML (no Figma before/after)
+
+### Keyboard shortcuts broken and conflicting with browser
+
+**Before:** The `flowShortcutLabels` object used hardcoded `'C'` instead of the `⌘` modifier for 4 of 5 flow shortcuts. Labels displayed "C T", "C G", "C C", "C A" instead of "⌘ T", "⌘ G", "⌘ C", "⌘ A". The underlying mechanism was a C-prefix chord (press C, then a letter) rather than actual ⌘+letter shortcuts. Additionally, several original letter choices conflicted with browser or OS shortcuts that cannot be overridden.
+
+**After:** All 7 keyboard shortcuts now use proper `⌘+letter` global handlers. Letters were remapped to avoid conflicts:
+
+| Action | Original | Remapped | Conflict avoided |
+|--------|----------|----------|-----------------|
+| Open +New menu | ⌘N | ⌘B | Browser New Window (non-overridable) |
+| New transfer | ⌘T | ⌘D | Browser New Tab (non-overridable) |
+| New category | ⌘C | ⌘J | OS Copy (sacred) |
+| Connect account | ⌘A | ⌘I | OS Select All (sacred) |
+
+⌘K (Search), ⌘E (Entry), and ⌘G (Goal) were kept — ⌘K and ⌘G are overridable browser shortcuts, and ⌘E has no browser conflict. The broken C-prefix chord system was removed entirely.
+
+See [Ch 4.0 keyboard shortcuts decision](ch-4.0-phase4-brainstorm.md#keyboard-shortcuts-revised-2026-05-14) for full rationale.
+
+---
+
 ## Noted but not designed
 
 These are gaps we identified but don't create before/after mockups for:

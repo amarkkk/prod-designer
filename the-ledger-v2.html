@@ -295,7 +295,7 @@
 
   /* ── TOP BAR (sticky) ───────────────────────────── */
   .topbar {
-    position: sticky; top: 0; z-index: 10;
+    position: sticky; top: 0; z-index: 100;
     background: color-mix(in oklch, var(--paper) 96%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--ink);
@@ -305,6 +305,7 @@
     align-items: center;
     gap: 18px;
     padding: 0 clamp(20px, 3vw, 40px);
+    overflow: visible;
   }
   .topbar-title {
     display: flex; align-items: baseline; gap: 14px;
@@ -380,12 +381,12 @@
   .search-clear[hidden] { display: none; }
 
   .command-palette {
-    position: absolute;
-    z-index: 70;
-    top: calc(100% + 8px);
-    left: 0;
-    width: min(520px, calc(100vw - 40px));
-    max-height: min(640px, calc(100vh - 112px));
+    position: fixed;
+    z-index: 140;
+    top: var(--palette-top, calc(var(--topbar-h) + 8px));
+    left: var(--palette-left, 20px);
+    width: var(--palette-width, min(520px, calc(100vw - 40px)));
+    max-height: var(--palette-max-height, min(640px, calc(100vh - 96px)));
     overflow: auto;
     background: var(--paper);
     border: 1px solid var(--ink);
@@ -396,7 +397,7 @@
     padding-top: 12px;
     border-top: 1px solid var(--rule-soft);
   }
-  .palette-group:first-child { border-top: none; padding-top: 0; }
+  .palette-group:first-child { border-top: none; }
   .palette-group-head {
     display: flex;
     justify-content: space-between;
@@ -456,6 +457,23 @@
     line-height: 1.2;
     font-style: italic;
     white-space: nowrap;
+  }
+  .palette-row .meta.shortcut-meta {
+    font-style: normal;
+  }
+  .shortcut-chord {
+    min-width: 34px;
+    height: 18px;
+    padding: 1px 6px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink-mute);
+    display: inline-grid;
+    place-items: center;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-style: normal;
   }
   .palette-match {
     text-decoration: underline;
@@ -554,12 +572,12 @@
   .quick-create-shortcuts {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
   }
   .quick-create-kbd {
-    min-width: 18px;
+    min-width: 42px;
     height: 18px;
-    padding: 1px 5px;
+    padding: 1px 6px;
     border: 1px solid var(--rule);
     background: var(--paper);
     color: var(--ink-mute);
@@ -1207,17 +1225,9 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 12px;
-    padding: 18px 20px 14px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--rule);
-  }
-  .compose-kicker {
-    font-size: 9.5px;
-    line-height: 1.2;
-    color: var(--ink-soft);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 6px;
+    align-items: center;
   }
   .compose-title {
     font-family: var(--display);
@@ -1404,8 +1414,22 @@
     gap: 8px;
     margin-bottom: 16px;
   }
+  .goal-compose-layout {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.82fr) minmax(0, 1.18fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .goal-context-panel {
+    border-right: 1px solid var(--rule-soft);
+    padding-right: 18px;
+    pointer-events: none;
+  }
+  .goal-context-panel .goal-context { margin: 8px 0 0; }
+  .goal-form-panel { min-width: 0; }
   .goal-context-row {
     grid-template-columns: 28px 1fr auto;
+    cursor: default;
   }
   .goal-context-row .rank {
     color: var(--ink-mute);
@@ -1907,6 +1931,13 @@
     .sidebar.open { left: 0; }
     .topbar-title .sub { display: none; }
     .statusbar .shortcuts { display: none; }
+    .goal-compose-layout { grid-template-columns: 1fr; }
+    .goal-context-panel {
+      border-right: 0;
+      border-bottom: 1px solid var(--rule-soft);
+      padding-right: 0;
+      padding-bottom: 14px;
+    }
   }
   @media (max-width: 720px) {
     .hero-split { grid-template-columns: 1fr; }
@@ -2047,7 +2078,7 @@
         </svg>
         <input placeholder="Search entries, merchants, categories…" />
         <button class="search-clear" type="button" aria-label="Clear search" hidden>×</button>
-        <kbd>⌘ K</kbd>
+        <kbd data-mod-shortcut="K">⌘ K</kbd>
       </div>
 
       <div class="topbar-actions">
@@ -2070,7 +2101,7 @@
                 </svg>
                 <span>New entry</span>
               </span>
-              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd">⌘</span><span class="quick-create-kbd">E</span><span class="quick-create-kbd quick-create-return">↵</span></span>
+              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd" data-flow-shortcut="entry">⌘E</span><span class="quick-create-kbd quick-create-return">↵</span></span>
             </button>
             <button class="quick-create-item" type="button" role="menuitem" data-flow="transfer">
               <span class="quick-create-main">
@@ -2079,7 +2110,7 @@
                 </svg>
                 <span>New transfer</span>
               </span>
-              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd">C</span><span class="quick-create-kbd">T</span><span class="quick-create-kbd quick-create-return">↵</span></span>
+              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd" data-flow-shortcut="transfer">⌘D</span><span class="quick-create-kbd quick-create-return">↵</span></span>
             </button>
             <button class="quick-create-item" type="button" role="menuitem" data-flow="goal">
               <span class="quick-create-main">
@@ -2088,7 +2119,7 @@
                 </svg>
                 <span>New goal</span>
               </span>
-              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd">C</span><span class="quick-create-kbd">G</span><span class="quick-create-kbd quick-create-return">↵</span></span>
+              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd" data-flow-shortcut="goal">⌘G</span><span class="quick-create-kbd quick-create-return">↵</span></span>
             </button>
             <button class="quick-create-item" type="button" role="menuitem" data-flow="category">
               <span class="quick-create-main">
@@ -2097,7 +2128,7 @@
                 </svg>
                 <span>New category</span>
               </span>
-              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd">C</span><span class="quick-create-kbd">C</span><span class="quick-create-kbd quick-create-return">↵</span></span>
+              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd" data-flow-shortcut="category">⌘J</span><span class="quick-create-kbd quick-create-return">↵</span></span>
             </button>
             <button class="quick-create-item" type="button" role="menuitem" data-flow="connect">
               <span class="quick-create-main">
@@ -2106,7 +2137,7 @@
                 </svg>
                 <span>Connect account</span>
               </span>
-              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd">C</span><span class="quick-create-kbd">A</span><span class="quick-create-kbd quick-create-return">↵</span></span>
+              <span class="quick-create-shortcuts" aria-hidden="true"><span class="quick-create-kbd" data-flow-shortcut="connect">⌘I</span><span class="quick-create-kbd quick-create-return">↵</span></span>
             </button>
           </div>
         </div>
@@ -2700,8 +2731,8 @@
         <span class="item">Next bill <strong>Adobe €59.99</strong> in 3 days</span>
       </div>
       <div class="shortcuts">
-        <span><kbd>⌘ K</kbd>Search</span>
-        <span><kbd>⌘ N</kbd>New</span>
+        <span><kbd data-mod-shortcut="K">⌘ K</kbd>Search</span>
+        <span><kbd data-mod-shortcut="B">⌘ B</kbd>New</span>
         <span><kbd>G</kbd>Go to</span>
         <span><kbd>?</kbd>Help</span>
       </div>
@@ -2758,8 +2789,17 @@
     let paletteRows = [];
     let paletteIndex = 0;
     let previousPaletteFocus = null;
-
     if (!quickCreate || !trigger || !menu || !items.length || !ledgerBody || !searchWrap || !searchInput) return;
+
+    const isApplePlatform = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+    const modifierLabel = isApplePlatform ? '⌘' : 'Ctrl';
+    const flowShortcutLabels = {
+      entry: `${modifierLabel} E`,
+      transfer: `${modifierLabel} D`,
+      goal: `${modifierLabel} G`,
+      category: `${modifierLabel} J`,
+      connect: `${modifierLabel} I`
+    };
 
     layer.className = 'flow-layer';
     layer.hidden = true;
@@ -2769,7 +2809,15 @@
     palette.setAttribute('role', 'listbox');
     palette.setAttribute('aria-label', 'Search and command palette');
     palette.hidden = true;
-    searchWrap.appendChild(palette);
+    document.body.appendChild(palette);
+
+    document.querySelectorAll('[data-mod-shortcut]').forEach(kbd => {
+      kbd.textContent = `${modifierLabel} ${kbd.dataset.modShortcut}`;
+    });
+    document.querySelectorAll('[data-flow-shortcut]').forEach(kbd => {
+      const flow = kbd.dataset.flowShortcut;
+      kbd.textContent = flowShortcutLabels[flow] || kbd.textContent;
+    });
 
     const isMenuOpen = () => !menu.hidden;
     const isPaletteOpen = () => !palette.hidden;
@@ -2803,8 +2851,23 @@
       if (searchClear) searchClear.hidden = !searchInput.value;
     };
 
+    const positionPalette = () => {
+      const rect = searchWrap.getBoundingClientRect();
+      const topbar = searchWrap.closest('.topbar');
+      const topbarBottom = topbar ? topbar.getBoundingClientRect().bottom : rect.bottom;
+      const gap = 4;
+      const width = Math.min(520, window.innerWidth - 40);
+      const left = Math.max(20, rect.right - width);
+      const top = topbarBottom + gap;
+      palette.style.setProperty('--palette-left', `${left}px`);
+      palette.style.setProperty('--palette-top', `${top}px`);
+      palette.style.setProperty('--palette-width', `${width}px`);
+      palette.style.setProperty('--palette-max-height', `${Math.max(220, window.innerHeight - top - 20)}px`);
+    };
+
     const openPalette = () => {
       if (!isPaletteOpen()) previousPaletteFocus = document.activeElement;
+      positionPalette();
       palette.hidden = false;
       searchWrap.classList.add('is-open');
       renderPalette();
@@ -2931,11 +2994,10 @@
       </div>
     `;
 
-    const composeShell = ({ flow, kicker, title, body, actions = '', wide = false }) => `
+    const composeShell = ({ flow, title, body, actions = '', wide = false }) => `
       <aside class="compose-panel ${wide ? 'wide' : ''}" role="dialog" aria-modal="false" aria-labelledby="${flow}-title" data-flow="${flow}">
         <header class="compose-head">
           <div>
-            <div class="compose-kicker">${escapeHTML(kicker)}</div>
             <div class="compose-title" id="${flow}-title">${escapeHTML(title)}</div>
           </div>
           <button class="flow-close" type="button" data-flow-close aria-label="Close">×</button>
@@ -2957,7 +3019,6 @@
       if (state === 'review') {
         layer.innerHTML = composeShell({
           flow: 'transfer',
-          kicker: 'Compact compose · confirmation',
           title: 'Review transfer',
           body: `
             <div class="compose-success" style="margin-bottom:16px;">
@@ -2976,7 +3037,6 @@
       if (state === 'success') {
         layer.innerHTML = composeShell({
           flow: 'transfer',
-          kicker: 'Compact compose · success',
           title: 'Transfer confirmed',
           body: `
             <div class="compose-success">
@@ -2994,7 +3054,6 @@
       }
       layer.innerHTML = composeShell({
         flow: 'transfer',
-        kicker: 'Compact compose · form',
         title: 'New transfer',
         body: `
           <form data-flow-form="transfer">
@@ -3022,7 +3081,6 @@
       if (state === 'success') {
         layer.innerHTML = composeShell({
           flow: 'goal',
-          kicker: 'Compact compose · success',
           title: 'Goal created',
           body: `
             <div class="compose-success">
@@ -3038,26 +3096,31 @@
       }
       layer.innerHTML = composeShell({
         flow: 'goal',
-        kicker: 'Compact compose · goal context',
         title: 'New goal',
         wide: true,
         body: `
           <form data-flow-form="goal">
-            <div class="goal-context">
-              <div class="compose-label">Current goals</div>
-              <div class="goal-context-row"><span class="rank">i.</span><span><span class="row-title">Emergency Fund</span><span class="row-meta">€6,200 / €10,000</span></span><span class="mini-progress"><span style="width:62%"></span></span></div>
-              <div class="goal-context-row"><span class="rank">ii.</span><span><span class="row-title">Japan in autumn</span><span class="row-meta">€1,450 / €3,500</span></span><span class="mini-progress"><span style="width:41%"></span></span></div>
-              <div class="goal-context-row"><span class="rank">iii.</span><span><span class="row-title">House deposit</span><span class="row-meta">€18,400 / €50,000</span></span><span class="mini-progress"><span style="width:36%"></span></span></div>
+            <div class="goal-compose-layout">
+              <section class="goal-context-panel" aria-label="Current goals context">
+                <div class="compose-label">Current goals</div>
+                <div class="goal-context" aria-hidden="true">
+                  <div class="goal-context-row"><span class="rank">i.</span><span><span class="row-title">Emergency Fund</span><span class="row-meta">€6,200 / €10,000</span></span><span class="mini-progress"><span style="width:62%"></span></span></div>
+                  <div class="goal-context-row"><span class="rank">ii.</span><span><span class="row-title">Japan in autumn</span><span class="row-meta">€1,450 / €3,500</span></span><span class="mini-progress"><span style="width:41%"></span></span></div>
+                  <div class="goal-context-row"><span class="rank">iii.</span><span><span class="row-title">House deposit</span><span class="row-meta">€18,400 / €50,000</span></span><span class="mini-progress"><span style="width:36%"></span></span></div>
+                </div>
+              </section>
+              <section class="goal-form-panel" aria-label="New goal details">
+                <div class="compose-grid">
+                  ${field('Name', 'name', 'Home renovation')}
+                  ${field('Target amount', 'target', '€ 8,000', { inputmode: 'decimal' })}
+                  ${field('Target date', 'date', 'Dec 2026')}
+                  ${field('Fund from', 'fund', 'Savings, Checking')}
+                  ${field('Funding model', 'model', 'Fixed amount / month', { type: 'select', options: ['Fixed amount / month', 'Percentage of income', 'Sweep leftover budget'] })}
+                  <p class="flow-note error full">Savings is also funding Emergency Fund. This may affect that goal's pace.</p>
+                </div>
+                <div class="flow-actions"><button class="btn btn-primary btn-sm" type="submit">Create goal</button></div>
+              </section>
             </div>
-            <div class="compose-grid">
-              ${field('Name', 'name', 'Home renovation')}
-              ${field('Target amount', 'target', '€ 8,000', { inputmode: 'decimal' })}
-              ${field('Target date', 'date', 'Dec 2026')}
-              ${field('Fund from', 'fund', 'Savings, Checking')}
-              ${field('Funding model', 'model', 'Fixed amount / month', { type: 'select', options: ['Fixed amount / month', 'Percentage of income', 'Sweep leftover budget'] })}
-              <p class="flow-note error full">Savings is also funding Emergency Fund. This may affect that goal's pace.</p>
-            </div>
-            <div class="flow-actions"><button class="btn btn-primary btn-sm" type="submit">Create goal</button></div>
           </form>
         `
       });
@@ -3071,7 +3134,6 @@
       if (state === 'success') {
         layer.innerHTML = composeShell({
           flow: 'category',
-          kicker: 'Compact compose · success',
           title: 'Category added',
           wide: true,
           body: `
@@ -3089,7 +3151,6 @@
       }
       layer.innerHTML = composeShell({
         flow: 'category',
-        kicker: 'Compact compose · entry assignment',
         title: 'New category',
         wide: true,
         body: `
@@ -3124,7 +3185,6 @@
           <section class="connect-modal" role="dialog" aria-modal="true" aria-labelledby="connect-title">
             <header class="compose-head">
               <div>
-                <div class="compose-kicker">Step ${step} of 4</div>
                 <div class="compose-title" id="connect-title">${steps[step - 1]}</div>
               </div>
               <button class="flow-close" type="button" data-flow-close aria-label="Close">×</button>
@@ -3333,19 +3393,11 @@
     });
 
     const commands = [
-      { group: 'Commands', icon: '✎', title: 'New entry', meta: 'create', flow: 'entry', keywords: 'new entry transaction expense income add manual' },
-      { group: 'Commands', icon: '⇄', title: 'New transfer', meta: 'create', flow: 'transfer', keywords: 'new transfer move money checking savings' },
-      { group: 'Commands', icon: '◎', title: 'New goal', meta: 'create', flow: 'goal', keywords: 'new goal target saving fund' },
-      { group: 'Commands', icon: '⌑', title: 'New category', meta: 'create', flow: 'category', keywords: 'new category budget assign entries' },
-      { group: 'Commands', icon: '↔', title: 'Connect account', meta: 'create', flow: 'connect', keywords: 'connect account bank sync import' }
-    ];
-    const goTo = [
-      { group: 'Go to', icon: '§ i', title: 'Today', meta: 'dashboard', target: '.hero', keywords: 'today dashboard net worth' },
-      { group: 'Go to', icon: '§ ii', title: 'Cashflow', meta: 'section', target: '.cashflow', keywords: 'cashflow income spending chart' },
-      { group: 'Go to', icon: '§ iv', title: 'The Ledger', meta: 'section', target: '#ledger-panel', keywords: 'ledger transactions entries' },
-      { group: 'Go to', icon: '§ v', title: 'Budgets', meta: 'section', target: '.fiscal-list', keywords: 'budget category spending' },
-      { group: 'Go to', icon: '§ vi', title: 'Goals', meta: 'section', target: '.goals', keywords: 'goals saving targets' },
-      { group: 'Go to', icon: '§ viii', title: 'Notices', meta: 'section', target: '.alerts', keywords: 'notices bills alerts due' }
+      { group: 'Commands', icon: '✎', title: 'New entry', meta: flowShortcutLabels.entry, shortcut: flowShortcutLabels.entry, flow: 'entry', keywords: 'new entry transaction expense income add manual' },
+      { group: 'Commands', icon: '⇄', title: 'New transfer', meta: flowShortcutLabels.transfer, shortcut: flowShortcutLabels.transfer, flow: 'transfer', keywords: 'new transfer move money checking savings' },
+      { group: 'Commands', icon: '◎', title: 'New goal', meta: flowShortcutLabels.goal, shortcut: flowShortcutLabels.goal, flow: 'goal', keywords: 'new goal target saving fund' },
+      { group: 'Commands', icon: '⌑', title: 'New category', meta: flowShortcutLabels.category, shortcut: flowShortcutLabels.category, flow: 'category', keywords: 'new category budget assign entries' },
+      { group: 'Commands', icon: '↔', title: 'Connect account', meta: flowShortcutLabels.connect, shortcut: flowShortcutLabels.connect, flow: 'connect', keywords: 'connect account bank sync import' }
     ];
     const searchable = [
       { group: 'Transactions', icon: '▸', title: 'Spotify Premium', meta: '−9.99 · 10 May', target: '#ledger-panel', keywords: 'spotify premium subscription music may' },
@@ -3359,8 +3411,7 @@
       { group: 'Accounts', icon: '■', title: 'Savings', meta: '€6,200.00', target: '.accounts-list', keywords: 'savings account tr emergency' },
       { group: 'Goals', icon: '◎', title: 'Emergency Fund', meta: '62%', target: '.goals', keywords: 'emergency fund reserve goal' },
       { group: 'Coach', icon: '!', title: 'Subscription creep, +€38/mo', meta: 'alert', target: '.coach', keywords: 'subscription creep linear audible nyt alert' },
-      ...commands,
-      ...goTo
+      ...commands
     ];
 
     const matchesQuery = (item, query) => {
@@ -3383,7 +3434,6 @@
         return [
           { title: 'Priority', rows: [{ group: 'Priority', icon: '!', title: '2 bills due this week', meta: 'urgent', target: '.alerts', keywords: 'bills due alert', tone: 'alert' }] },
           { title: 'Commands', rows: commands },
-          { title: 'Go to', rows: goTo },
           { title: 'Recent', rows: [
             { group: 'Recent', icon: '“', title: 'spotify', meta: 'recent', query: 'spotify' },
             { group: 'Recent', icon: '“', title: 'groceries april', meta: 'recent', query: 'groceries april' }
@@ -3417,7 +3467,10 @@
           button.type = 'button';
           button.setAttribute('role', 'option');
           button.dataset.paletteIndex = String(index);
-          button.innerHTML = `<span class="icon">${escapeHTML(row.icon)}</span><span class="title">${highlight(row.title, query)}</span><span class="meta">${escapeHTML(row.meta)}</span>`;
+          const meta = row.shortcut
+            ? `<span class="meta shortcut-meta"><span class="shortcut-chord">${escapeHTML(row.shortcut)}</span></span>`
+            : `<span class="meta">${escapeHTML(row.meta)}</span>`;
+          button.innerHTML = `<span class="icon">${escapeHTML(row.icon)}</span><span class="title">${highlight(row.title, query)}</span>${meta}`;
           section.appendChild(button);
         });
         palette.appendChild(section);
@@ -3518,6 +3571,12 @@
       if (!row) return;
       activatePaletteRow(paletteRows[Number(row.dataset.paletteIndex)]);
     });
+    window.addEventListener('resize', () => {
+      if (isPaletteOpen()) positionPalette();
+    });
+    window.addEventListener('scroll', () => {
+      if (isPaletteOpen()) positionPalette();
+    }, { passive: true });
 
     document.addEventListener('keydown', event => {
       const key = event.key.toLowerCase();
@@ -3530,7 +3589,7 @@
         return;
       }
 
-      if (hasCommand && key === 'n') {
+      if (hasCommand && key === 'b') {
         event.preventDefault();
         closePalette(false);
         openMenu(0);
@@ -3539,7 +3598,41 @@
 
       if (hasCommand && key === 'e') {
         event.preventDefault();
+        closeMenu(false);
+        closePalette(false);
         launchNewEntry();
+        return;
+      }
+
+      if (hasCommand && key === 'd') {
+        event.preventDefault();
+        closeMenu(false);
+        closePalette(false);
+        launchFlow('transfer');
+        return;
+      }
+
+      if (hasCommand && key === 'g') {
+        event.preventDefault();
+        closeMenu(false);
+        closePalette(false);
+        launchFlow('goal');
+        return;
+      }
+
+      if (hasCommand && key === 'j') {
+        event.preventDefault();
+        closeMenu(false);
+        closePalette(false);
+        launchFlow('category');
+        return;
+      }
+
+      if (hasCommand && key === 'i') {
+        event.preventDefault();
+        closeMenu(false);
+        closePalette(false);
+        launchFlow('connect');
         return;
       }
 

@@ -30,12 +30,30 @@ This brainstorming session produced three focused specs, split for isolated work
 
 Three container types total: inline (entry), compact compose (transfer, goal, category), centered modal (connect account).
 
+### Keyboard shortcuts (revised 2026-05-14)
+
+Global ⌘+letter shortcuts for all create actions. Replaces the original C-prefix chord system that was broken (labels rendered "C" instead of "⌘", and no actual ⌘ handlers existed for most flows).
+
+| Action | Shortcut | Notes |
+|--------|----------|-------|
+| Search / command palette | ⌘K | Opens palette, focuses search input |
+| Open +New menu | ⌘B | Remapped from ⌘N (browser New Window, non-overridable) |
+| New entry | ⌘E | Direct launch (most frequent action) |
+| New transfer | ⌘D | Remapped from ⌘T (browser New Tab, non-overridable); D = Dispatch |
+| New goal | ⌘G | Overrides browser Find Next (Figma does the same) |
+| New category | ⌘J | Remapped from ⌘C to avoid Copy conflict |
+| Connect account | ⌘I | Remapped from ⌘A to avoid Select All conflict; I = Import/Integrate |
+
+**Remap rationale:** Browser shortcuts fall into two tiers. *Non-overridable* (browser-chrome accelerators processed before the page): ⌘N (New Window), ⌘T (New Tab), ⌘W (Close Tab) — `preventDefault()` cannot suppress these. *Overridable* (dispatched to the page first): ⌘D (Bookmark), ⌘G (Find Next), ⌘J (Downloads), ⌘K (Address bar) — `preventDefault()` works. Sacred OS shortcuts ⌘C (Copy) and ⌘A (Select All) are never overridden regardless of tier.
+
+**Implementation:** All shortcuts are global `document.addEventListener('keydown')` handlers. They work from anywhere — no need to open the menu first. The previous C-prefix chord system (press C, then a letter while menu was open) has been removed.
+
 ### Search model
 
 - Compact dropdown from topbar search input (not full-width overlay)
 - Universal launcher: search + commands in one panel
 - Results grouped by content type, NO inline quick actions (Enter = navigate only)
-- Commands discovered by typing (fuzzy match) — no per-command keyboard shortcuts in palette
+- Commands discoverable by typing (fuzzy match) AND by per-command ⌘ shortcuts shown in palette
 - Escape always closes palette; ✕ button or ⌘+Backspace clears search text without closing
 - Tab skips between result groups
 

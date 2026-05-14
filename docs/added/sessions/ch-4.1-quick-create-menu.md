@@ -51,11 +51,23 @@ Extracted from Ch 4.0 brainstorm (2026-05-13). Focused spec for Figma execution.
 **Item hover/focus:** Paper-sunk background, 180ms ease-out. Focus ring: 2px ink outline, offset 2px.
 
 **Keyboard navigation:**
-- ⌘N opens the dropdown
+- ⌘B opens the dropdown (remapped from ⌘N which conflicts with browser New Window)
 - ↑↓ moves focus between items — the "Enter" kbd hint follows focus
 - Enter launches the focused flow
 - Escape closes dropdown, restores focus to +New button
 - Click outside closes dropdown
+
+**Per-flow global shortcuts** (work from anywhere, menu open or closed):
+
+| Flow | Shortcut | Mnemonic |
+|------|----------|----------|
+| New entry | ⌘E | E = Entry |
+| New transfer | ⌘D | D = Dispatch (remapped from ⌘T to avoid browser New Tab) |
+| New goal | ⌘G | G = Goal |
+| New category | ⌘J | J (remapped from ⌘C to avoid Copy conflict) |
+| Connect account | ⌘I | I = Import/Integrate (remapped from ⌘A to avoid Select All conflict) |
+
+These shortcuts are shown as `kbd` badges on each menu item and in the command palette. See [Ch 4.0 keyboard shortcuts decision](ch-4.0-phase4-brainstorm.md#keyboard-shortcuts-revised-2026-05-14) for remap rationale.
 
 ### Relationship to search/command palette
 
@@ -282,7 +294,7 @@ This makes the compact compose slightly larger — more like a compact panel tha
 
 ### Interaction
 
-1. Anna triggers: +New → New category, or C in command palette
+1. Anna triggers: +New → New category, ⌘J, or types "category" in command palette
 2. Compact compose appears bottom-right
 3. Anna types category name, optionally sets budget
 4. Scrolls through uncategorized entries, checks the ones to assign

@@ -57,14 +57,14 @@ Covers the **entire database**, not just dashboard-visible items:
 ### Specs
 
 - **Priority alert row:** If urgent items exist (overdue bills, over-budget alerts), pinned at top with attention badge. Must be keyboard-accessible — selectable with arrow keys, Enter navigates to the relevant section.
-- **Commands section:** The 5 create actions + navigation commands. No per-command keyboard shortcuts displayed — Anna discovers commands by typing (e.g., "new entry", "transfer"). Fuzzy matching surfaces the right command from partial input.
+- **Commands section:** The 5 create actions + navigation commands. Each command displays its ⌘ shortcut as a `kbd` badge (⌘E, ⌘D, ⌘G, ⌘J, ⌘I). Anna can also discover commands by typing (e.g., "new entry", "transfer"). Fuzzy matching surfaces the right command from partial input.
 - **Go to section:** Quick navigation to dashboard sections (§ i through § viii). Typing a section name filters to it.
 - **Recent searches:** Last 2-3 queries, if any.
 - **First item auto-focused:** The priority alert (if present) or the first command.
 
 ### Command discovery
 
-Commands are found by typing, not by memorizing shortcuts. The palette uses fuzzy matching: typing "trans" surfaces "New transfer", typing "goal" surfaces "New goal". This follows the Superhuman/Linear pattern — the search field IS the command input. Global shortcuts (⌘K to open palette, ⌘N to open +New dropdown) remain outside the palette.
+Commands are discoverable two ways: by typing (fuzzy match) and by per-command ⌘ shortcuts displayed inline. Typing "trans" surfaces "New transfer", typing "goal" surfaces "New goal" — the Superhuman/Linear pattern where the search field IS the command input. Global shortcuts (⌘K for palette, ⌘B for +New, ⌘E/D/G/J/I for each flow) work from anywhere. See [Ch 4.0 keyboard shortcuts decision](ch-4.0-phase4-brainstorm.md#keyboard-shortcuts-revised-2026-05-14) for the full shortcut table and remap rationale.
 
 ---
 
