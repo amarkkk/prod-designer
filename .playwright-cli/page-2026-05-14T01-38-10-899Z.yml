@@ -1,0 +1,728 @@
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - emphasis [ref=e5]: The
+        - text: Ledger
+      - generic [ref=e6]: v 2.1
+    - generic [ref=e7]:
+      - generic [ref=e9]: Sections
+      - navigation [ref=e10]:
+        - list [ref=e11]:
+          - listitem [ref=e12]:
+            - link "§ i Today 11 May" [ref=e13] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e14]: § i
+              - generic [ref=e15]: Today
+              - generic [ref=e16]: 11 May
+          - listitem [ref=e17]:
+            - link "§ ii Transactions +1" [ref=e18] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e19]: § ii
+              - generic [ref=e20]: Transactions
+              - generic [ref=e21]: "+1"
+          - listitem [ref=e22]:
+            - link "§ iii Budgets 1 over" [ref=e23] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e24]: § iii
+              - generic [ref=e25]: Budgets
+              - generic [ref=e26]: 1 over
+          - listitem [ref=e27]:
+            - link "§ iv Goals 3" [ref=e28] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e29]: § iv
+              - generic [ref=e30]: Goals
+              - generic [ref=e31]: "3"
+          - listitem [ref=e32]:
+            - link "§ v Bills €642" [ref=e33] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e34]: § v
+              - generic [ref=e35]: Bills
+              - generic [ref=e36]: €642
+          - listitem [ref=e37]:
+            - link "§ vi Coach 3" [ref=e38] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e39]: § vi
+              - generic [ref=e40]: Coach
+              - generic [ref=e41]: "3"
+          - listitem [ref=e42]:
+            - link "§ vii Reports —" [ref=e43] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e44]: § vii
+              - generic [ref=e45]: Reports
+              - generic [ref=e46]: —
+      - generic [ref=e47]:
+        - generic [ref=e48]: Accounts · 4
+        - link "Link account" [ref=e49] [cursor=pointer]:
+          - /url: "#"
+          - text: +
+      - list [ref=e50]:
+        - listitem [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]:
+            - generic [ref=e54]: Checking
+            - generic [ref=e55]: ··2814
+          - generic [ref=e56]:
+            - generic [ref=e57]: €4,820.71
+            - generic [ref=e58]: ▲ €620
+        - listitem [ref=e59] [cursor=pointer]:
+          - generic [ref=e60]:
+            - generic [ref=e62]: Savings
+            - generic [ref=e63]: TR
+          - generic [ref=e64]:
+            - generic [ref=e65]: €6,200.00
+            - generic [ref=e66]: —
+        - listitem [ref=e67] [cursor=pointer]:
+          - generic [ref=e68]:
+            - generic [ref=e70]: Credit · Amex
+            - generic [ref=e71]: ··0071
+          - generic [ref=e72]:
+            - generic [ref=e73]: −€1,247.20
+            - generic [ref=e74]: ▼ €128
+        - listitem [ref=e75] [cursor=pointer]:
+          - generic [ref=e76]:
+            - generic [ref=e78]: Brokerage
+            - generic [ref=e79]: SC
+          - generic [ref=e80]:
+            - generic [ref=e81]: €74,439.49
+            - generic [ref=e82]: ▲ €1,840
+    - generic [ref=e83]:
+      - generic [ref=e84]: AH
+      - generic [ref=e85]:
+        - generic [ref=e86]: Anna Hartmann
+        - generic [ref=e87]: Personal · Berlin
+      - button "Settings" [ref=e88] [cursor=pointer]:
+        - img [ref=e89]
+  - generic [ref=e92]:
+    - banner [ref=e93]:
+      - generic [ref=e94]:
+        - generic [ref=e95]: § i
+        - generic [ref=e96]: Today
+        - generic [ref=e97]:
+          - text: Monday morning, 11 May ·
+          - strong [ref=e98]: 3h
+          - text: since you last looked · 1 new entry
+      - generic [ref=e99]:
+        - img [ref=e100]
+        - textbox "Search entries, merchants, categories…" [ref=e103]
+        - generic [ref=e104]: ⌘ K
+      - generic [ref=e105]:
+        - button "Notifications" [ref=e106] [cursor=pointer]:
+          - img [ref=e107]
+          - generic "Unread" [ref=e110]
+        - button "+ New ▾" [ref=e112] [cursor=pointer]:
+          - generic [ref=e113]: +
+          - text: New
+          - generic [ref=e114]: ▾
+    - main [ref=e115]:
+      - region "Net worth and key figures" [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: ◆
+            - generic [ref=e120]: Net worth · as of 09.42 CET
+            - generic [ref=e122]:
+              - strong [ref=e123]: +€127.45
+              - text: since you last looked
+          - generic [ref=e124]:
+            - paragraph [ref=e125]: €84,212.40
+            - complementary [ref=e126]:
+              - text: →
+              - strong [ref=e127]: Ahead of trend.
+              - text: Your 6-month average net-worth growth is €1,210/mo; you are at €1,420 with three weeks to go.
+          - generic [ref=e128]:
+            - generic [ref=e129]: ▲
+            - generic [ref=e130]: €1,420.18 (1.71%)
+            - emphasis [ref=e131]: vs April
+            - generic [ref=e132]: ·
+            - emphasis [ref=e133]: +€3,821 year to date
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - generic [ref=e136]: Assets
+              - generic [ref=e137]: €102,840
+              - generic [ref=e138]:
+                - text: Across 4 accounts ·
+                - emphasis [ref=e139]: up €1,840
+            - generic [ref=e140]:
+              - generic [ref=e141]: Liabilities
+              - generic [ref=e142]: €18,627.60
+              - generic [ref=e143]: 2 cards, 1 loan · paying down
+            - generic [ref=e144]:
+              - generic [ref=e145]: Savings rate
+              - generic [ref=e146]: 23%
+              - generic [ref=e147]:
+                - text: +1 pt vs 6-mo ·
+                - emphasis [ref=e148]: on target
+        - complementary [ref=e149]:
+          - generic [ref=e150]:
+            - heading "May figures" [level=3] [ref=e151]:
+              - emphasis [ref=e152]: May
+              - text: figures
+            - generic [ref=e153]: Day 11 / 31
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]:
+                - text: Income
+                - generic [ref=e157]: salary + side
+              - generic [ref=e158]: €4,820.00
+              - generic [ref=e159]: ▲2.4%
+            - generic [ref=e160]:
+              - generic [ref=e161]:
+                - text: Spending
+                - generic [ref=e162]: on track for €4,860
+              - generic [ref=e163]: €2,914.66
+              - generic [ref=e164]: ▼5.1%
+            - generic [ref=e165]:
+              - generic [ref=e166]: Cash on hand
+              - generic [ref=e167]: €12,408.71
+              - generic [ref=e168]: ▲€620
+            - generic [ref=e169]:
+              - generic [ref=e170]: Due in 14 days
+              - generic [ref=e171]: €642.30
+              - generic [ref=e172]: 5 bills
+          - generic [ref=e173]:
+            - link "Transfer" [ref=e174] [cursor=pointer]:
+              - /url: "#"
+            - link "+ Pay bill" [ref=e175] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e176]: +
+              - text: Pay bill
+            - link "Reconcile" [ref=e177] [cursor=pointer]:
+              - /url: "#"
+      - generic [ref=e178]:
+        - generic [ref=e179]:
+          - generic [ref=e180]:
+            - generic [ref=e181]:
+              - generic [ref=e182]: § ii
+              - generic [ref=e183]:
+                - heading "Cashflow" [level=3] [ref=e184]
+                - generic [ref=e185]: Income against spending
+            - generic [ref=e186]:
+              - tablist "Period" [ref=e187]:
+                - radio "1M"
+                - generic [ref=e188] [cursor=pointer]: 1M
+                - radio "6M" [checked]
+                - generic [ref=e189] [cursor=pointer]: 6M
+                - radio "1Y"
+                - generic [ref=e190] [cursor=pointer]: 1Y
+                - radio "All"
+                - generic [ref=e191] [cursor=pointer]: All
+              - link "Open report →" [ref=e192] [cursor=pointer]:
+                - /url: "#"
+          - img "Cashflow chart" [ref=e193]:
+            - generic [ref=e194]:
+              - generic [ref=e195]: €6k
+              - generic [ref=e196]: €4k
+              - generic [ref=e197]: €2k
+              - generic [ref=e198]: €0
+            - generic [ref=e205]: Q1 bonus deposited
+            - generic [ref=e206]:
+              - generic [ref=e207]: Dec
+              - generic [ref=e208]: Jan
+              - generic [ref=e209]: Feb
+              - generic [ref=e210]: Mar
+              - generic [ref=e211]: Apr
+              - generic [ref=e212]: May
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - generic [ref=e215]: Income
+              - generic [ref=e217]: Spending
+            - generic [ref=e219]:
+              - text: 6-mo avg · in
+              - strong [ref=e220]: €4,710
+              - text: · out
+              - strong [ref=e221]: €3,228
+              - text: · net
+              - strong [ref=e222]: +€1,482/mo
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - generic [ref=e225]:
+              - generic [ref=e226]: § iii
+              - generic [ref=e227]:
+                - heading "Where it went" [level=3] [ref=e228]
+                - generic [ref=e229]: May 2026, by category
+            - generic [ref=e230]:
+              - generic [ref=e231]: €2,914
+              - link "Drill →" [ref=e232] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e233]:
+            - listitem [ref=e234] [cursor=pointer]:
+              - generic [ref=e235]: i.
+              - generic [ref=e236]: Housingrent + utilities
+              - generic [ref=e237]: €932
+              - generic [ref=e238]: 32%
+            - listitem [ref=e240] [cursor=pointer]:
+              - generic [ref=e241]: ii.
+              - generic [ref=e242]: Groceries5 visits, avg €128
+              - generic [ref=e243]: €641
+              - generic [ref=e244]: 22%
+            - listitem [ref=e246] [cursor=pointer]:
+              - generic [ref=e247]: iii.
+              - generic [ref=e248]: TransportBVG + ride-hails
+              - generic [ref=e249]: €525
+              - generic [ref=e250]: 18%
+            - listitem [ref=e252] [cursor=pointer]:
+              - generic [ref=e253]: iv.
+              - generic [ref=e254]: Dining out9 outings
+              - generic [ref=e255]: €408
+              - generic [ref=e256]: 14%
+            - listitem [ref=e258] [cursor=pointer]:
+              - generic [ref=e259]: v.
+              - generic [ref=e260]: All other
+              - generic [ref=e261]: €408
+              - generic [ref=e262]: 14%
+            - listitem [ref=e264]:
+              - generic [ref=e265]: Sum total
+              - generic [ref=e266]: €2,914
+              - generic [ref=e267]: 100%
+      - generic [ref=e268]:
+        - generic [ref=e269]:
+          - generic [ref=e270]:
+            - generic [ref=e271]:
+              - generic [ref=e272]: § iv
+              - generic [ref=e273]:
+                - heading "The Ledger" [level=3] [ref=e274]
+                - generic [ref=e275]: Recent entries · last 7 days · double-entry
+            - generic [ref=e276]:
+              - radiogroup "Filter" [ref=e277]:
+                - radio "All" [checked]
+                - generic [ref=e278] [cursor=pointer]: All
+                - radio "Credits"
+                - generic [ref=e279] [cursor=pointer]: Credits
+                - radio "Debits"
+                - generic [ref=e280] [cursor=pointer]: Debits
+              - link "Open →" [ref=e281] [cursor=pointer]:
+                - /url: "#"
+          - table [ref=e282]:
+            - rowgroup [ref=e283]:
+              - row "Date Entry Debit Credit Balance" [ref=e284]:
+                - columnheader "Date" [ref=e285]
+                - columnheader "Entry" [ref=e286]
+                - columnheader "Debit" [ref=e287]
+                - columnheader "Credit" [ref=e288]
+                - columnheader "Balance" [ref=e289]
+            - rowgroup [ref=e290]:
+              - row "14 May Spotify Premium Subscription · just added Categorise Split Cancel −9.99 — €12,408.71" [ref=e614]:
+                - cell "14 May" [ref=e615]
+                - cell "Spotify Premium Subscription · just added Categorise Split Cancel" [ref=e616]:
+                  - text: Spotify Premium
+                  - generic [ref=e617]: Subscription · just added
+                  - generic [ref=e618]:
+                    - link "Categorise" [ref=e619] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Split" [ref=e620] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Cancel" [ref=e621] [cursor=pointer]:
+                      - /url: "#"
+                - cell "−9.99" [ref=e622]
+                - cell "—" [ref=e623]
+                - cell "€12,408.71" [ref=e624]
+              - row "10 May Spotify Premium Subscription · 9th of 12 Categorise Split Cancel −9.99 — €12,408.71" [ref=e291]:
+                - cell "10 May" [ref=e292]
+                - cell "Spotify Premium Subscription · 9th of 12 Categorise Split Cancel" [ref=e293]:
+                  - text: Spotify Premium
+                  - generic [ref=e294]: Subscription · 9th of 12
+                  - generic [ref=e295]:
+                    - link "Categorise" [ref=e296] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Split" [ref=e297] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Cancel" [ref=e298] [cursor=pointer]:
+                      - /url: "#"
+                - cell "−9.99" [ref=e299]
+                - cell "—" [ref=e300]
+                - cell "€12,408.71" [ref=e301]
+              - row "09 May Rewe Supermarket Groceries · card Categorise Split −48.20 — €12,418.70" [ref=e302]:
+                - cell "09 May" [ref=e303]
+                - cell "Rewe Supermarket Groceries · card Categorise Split" [ref=e304]:
+                  - text: Rewe Supermarket
+                  - generic [ref=e305]: Groceries · card
+                  - generic [ref=e306]:
+                    - link "Categorise" [ref=e307] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Split" [ref=e308] [cursor=pointer]:
+                      - /url: "#"
+                - cell "−48.20" [ref=e309]
+                - cell "—" [ref=e310]
+                - cell "€12,418.70" [ref=e311]
+              - row "09 May Employer payroll Salary · regular View — +4,820.00 €12,466.90" [ref=e312]:
+                - cell "09 May" [ref=e313]
+                - cell "Employer payroll Salary · regular View" [ref=e314]:
+                  - text: Employer payroll
+                  - generic [ref=e315]: Salary · regular
+                  - link "View" [ref=e317] [cursor=pointer]:
+                    - /url: "#"
+                - cell "—" [ref=e318]
+                - cell "+4,820.00" [ref=e319]
+                - cell "€12,466.90" [ref=e320]
+              - row "08 May Uber Transport · card Categorise −14.80 — €7,646.90" [ref=e321]:
+                - cell "08 May" [ref=e322]
+                - cell "Uber Transport · card Categorise" [ref=e323]:
+                  - text: Uber
+                  - generic [ref=e324]: Transport · card
+                  - link "Categorise" [ref=e326] [cursor=pointer]:
+                    - /url: "#"
+                - cell "−14.80" [ref=e327]
+                - cell "—" [ref=e328]
+                - cell "€7,646.90" [ref=e329]
+              - row "07 May Amazon.de Shopping · books + electronics Categorise Split −127.45 — €7,661.70" [ref=e330]:
+                - cell "07 May" [ref=e331]
+                - cell "Amazon.de Shopping · books + electronics Categorise Split" [ref=e332]:
+                  - text: Amazon.de
+                  - generic [ref=e333]: Shopping · books + electronics
+                  - generic [ref=e334]:
+                    - link "Categorise" [ref=e335] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Split" [ref=e336] [cursor=pointer]:
+                      - /url: "#"
+                - cell "−127.45" [ref=e337]
+                - cell "—" [ref=e338]
+                - cell "€7,661.70" [ref=e339]
+              - row "06 May Netflix Subscription Categorise Cancel −14.99 — €7,789.15" [ref=e340]:
+                - cell "06 May" [ref=e341]
+                - cell "Netflix Subscription Categorise Cancel" [ref=e342]:
+                  - text: Netflix
+                  - generic [ref=e343]: Subscription
+                  - generic [ref=e344]:
+                    - link "Categorise" [ref=e345] [cursor=pointer]:
+                      - /url: "#"
+                    - link "Cancel" [ref=e346] [cursor=pointer]:
+                      - /url: "#"
+                - cell "−14.99" [ref=e347]
+                - cell "—" [ref=e348]
+                - cell "€7,789.15" [ref=e349]
+              - row "05 May Vattenfall Utilities · direct debit View −78.40 — €7,804.14" [ref=e350]:
+                - cell "05 May" [ref=e351]
+                - cell "Vattenfall Utilities · direct debit View" [ref=e352]:
+                  - text: Vattenfall
+                  - generic [ref=e353]: Utilities · direct debit
+                  - link "View" [ref=e355] [cursor=pointer]:
+                    - /url: "#"
+                - cell "−78.40" [ref=e356]
+                - cell "—" [ref=e357]
+                - cell "€7,804.14" [ref=e358]
+          - generic [ref=e359]:
+            - generic [ref=e360]:
+              - strong [ref=e625]: "8"
+              - text: of 143 entries · 1 new since 09.42 · all reconciled
+            - link "Import →" [ref=e362] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e363]:
+          - generic [ref=e364]:
+            - generic [ref=e365]:
+              - generic [ref=e366]: § v
+              - generic [ref=e367]:
+                - heading "Budgets" [level=3] [ref=e368]
+                - generic [ref=e369]: May 2026 · 35.4% of month elapsed
+            - generic [ref=e370]:
+              - generic [ref=e371]: 3 on track · 1 over · 1 warn
+              - link "Edit →" [ref=e372] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e373]:
+            - listitem [ref=e374]:
+              - generic [ref=e375]:
+                - text: Groceries
+                - generic [ref=e376]: 80% used
+              - generic [ref=e377]:
+                - strong [ref=e378]: €641
+                - text: / €800
+              - generic [ref=e381]:
+                - generic [ref=e382]: €159 left · projecting €52 under by month end
+                - link "Adjust" [ref=e383] [cursor=pointer]:
+                  - /url: "#"
+            - listitem [ref=e384]:
+              - generic [ref=e385]:
+                - text: Dining out
+                - generic [ref=e386]: 136% — over
+              - generic [ref=e387]:
+                - strong [ref=e388]: €408
+                - text: / €300
+              - generic [ref=e391]: budget
+              - generic [ref=e392]:
+                - emphasis [ref=e393]: Over by €108 · first overshoot since February
+                - link "Move funds" [ref=e394] [cursor=pointer]:
+                  - /url: "#"
+            - listitem [ref=e395]:
+              - generic [ref=e396]:
+                - text: Transport
+                - generic [ref=e397]: 88% used
+              - generic [ref=e398]:
+                - strong [ref=e399]: €525
+                - text: / €600
+              - generic [ref=e402]:
+                - generic [ref=e403]: €75 left · pace risks €40 overshoot
+                - link "Adjust" [ref=e404] [cursor=pointer]:
+                  - /url: "#"
+            - listitem [ref=e405]:
+              - generic [ref=e406]:
+                - text: Entertainment
+                - generic [ref=e407]: 36% used
+              - generic [ref=e408]:
+                - strong [ref=e409]: €72
+                - text: / €200
+              - generic [ref=e412]:
+                - generic [ref=e413]: €128 spare · could absorb the dining gap
+                - link "Adjust" [ref=e414] [cursor=pointer]:
+                  - /url: "#"
+            - listitem [ref=e415]:
+              - generic [ref=e416]:
+                - text: Shopping
+                - generic [ref=e417]: 78% used
+              - generic [ref=e418]:
+                - strong [ref=e419]: €312
+                - text: / €400
+              - generic [ref=e422]:
+                - generic [ref=e423]: €88 left · holds at average
+                - link "Adjust" [ref=e424] [cursor=pointer]:
+                  - /url: "#"
+      - region "Goals" [ref=e425]:
+        - generic [ref=e426]:
+          - generic [ref=e427]:
+            - generic [ref=e428]: § vi
+            - generic [ref=e429]:
+              - heading "Goals" [level=3] [ref=e430]
+              - generic [ref=e431]: €26,050 of €63,500 · three horizons
+          - link "+ New goal" [ref=e433] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e434]:
+          - article [ref=e435]:
+            - generic [ref=e436]:
+              - text: No. i · Reserve
+              - generic [ref=e437]: i.
+            - heading "Emergency Fund" [level=4] [ref=e438]:
+              - emphasis [ref=e439]: Emergency
+              - text: Fund
+            - generic [ref=e440]:
+              - strong [ref=e441]: €6,200
+              - text: of €10,000
+            - generic [ref=e444]:
+              - generic [ref=e445]: ETA December 2026
+              - generic [ref=e446]: 62%
+            - generic [ref=e447]:
+              - emphasis [ref=e448]: On pace
+              - text: · €475/mo at current rate
+            - link "+ Contribute" [ref=e449] [cursor=pointer]:
+              - /url: "#"
+          - article [ref=e450]:
+            - generic [ref=e451]:
+              - text: No. ii · Travel
+              - generic [ref=e452]: ii.
+            - heading "Japan in autumn" [level=4] [ref=e453]:
+              - emphasis [ref=e454]: Japan
+              - text: in autumn
+            - generic [ref=e455]:
+              - strong [ref=e456]: €1,450
+              - text: of €3,500
+            - generic [ref=e459]:
+              - generic [ref=e460]: ETA August 2026
+              - generic [ref=e461]: 41%
+            - generic [ref=e462]:
+              - emphasis [ref=e463]: Behind
+              - text: · +€85/mo to land on time
+            - link "+ Contribute" [ref=e464] [cursor=pointer]:
+              - /url: "#"
+          - article [ref=e465]:
+            - generic [ref=e466]:
+              - text: No. iii · Property
+              - generic [ref=e467]: iii.
+            - heading "House deposit" [level=4] [ref=e468]:
+              - emphasis [ref=e469]: House
+              - text: deposit
+            - generic [ref=e470]:
+              - strong [ref=e471]: €18,400
+              - text: of €50,000
+            - generic [ref=e474]:
+              - generic [ref=e475]: ETA March 2028
+              - generic [ref=e476]: 36%
+            - generic [ref=e477]:
+              - emphasis [ref=e478]: On pace
+              - text: · brokerage gains will close gap
+            - link "+ Contribute" [ref=e479] [cursor=pointer]:
+              - /url: "#"
+      - region "Coach" [ref=e480]:
+        - generic [ref=e481]:
+          - generic [ref=e482]:
+            - generic [ref=e483]: § vii
+            - generic [ref=e484]:
+              - heading "Coach" [level=3] [ref=e485]
+              - generic [ref=e486]: 3 notes ready · updated 06.42 CET
+          - generic [ref=e487]:
+            - generic [ref=e488]: 1 alert · 2 nudges
+            - link "All notes →" [ref=e489] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e490]:
+          - article [ref=e491]:
+            - generic [ref=e492]:
+              - text: Alert · subscriptions
+              - generic [ref=e493]: i.
+            - heading "Subscription creep, +€38/mo" [level=4] [ref=e494]:
+              - emphasis [ref=e495]: Subscription
+              - text: creep, +€38/mo
+            - paragraph [ref=e496]:
+              - text: "Three new monthly charges have joined the ledger in 60 days:"
+              - strong [ref=e497]: Linear
+              - text: ","
+              - strong [ref=e498]: Audible
+              - text: ","
+              - strong [ref=e499]: NYT
+              - text: . Cancelling unused ones saves roughly
+              - strong [ref=e500]: €456
+              - text: a year, or
+              - strong [ref=e501]: €5,800
+              - text: compounded over a decade.
+            - generic [ref=e502]:
+              - generic [ref=e503]: €38
+              - generic [ref=e504]: / mo · 3 charges
+            - generic [ref=e505]: Detected at 06.42 · last 60 days
+            - generic [ref=e506]:
+              - link "Review three" [ref=e507] [cursor=pointer]:
+                - /url: "#"
+              - link "Snooze" [ref=e508] [cursor=pointer]:
+                - /url: "#"
+          - article [ref=e509]:
+            - generic [ref=e510]:
+              - text: Action · sweep
+              - generic [ref=e511]: ii.
+            - heading "Sweep €52 to Emergency?" [level=4] [ref=e512]:
+              - emphasis [ref=e513]: Sweep
+              - text: €52 to Emergency?
+            - paragraph [ref=e514]:
+              - text: Grocery spending tracks
+              - strong [ref=e515]: 4% under
+              - text: for the second month running. At current pace May closes
+              - strong [ref=e516]: €52
+              - text: below the limit. Sweep automatically to the Emergency Fund on the 1st of June?
+            - generic [ref=e517]:
+              - generic [ref=e518]: €52
+              - generic [ref=e519]: projected · holds at pace
+            - generic [ref=e520]: Re-runs nightly · cancel any time
+            - generic [ref=e521]:
+              - link "Sweep €52" [ref=e522] [cursor=pointer]:
+                - /url: "#"
+              - link "Decline" [ref=e523] [cursor=pointer]:
+                - /url: "#"
+          - article [ref=e524]:
+            - generic [ref=e525]:
+              - text: Heads-up · dining
+              - generic [ref=e526]: iii.
+            - heading "Dining already €108 over" [level=4] [ref=e527]:
+              - emphasis [ref=e528]: Dining
+              - text: already €108 over
+            - paragraph [ref=e529]:
+              - text: Three weeks remain in May with no room on the Dining out line. Entertainment sits at
+              - strong [ref=e530]: 36% used
+              - text: (
+              - strong [ref=e531]: €128 spare
+              - text: ). Move €60 across to keep both green?
+            - generic [ref=e532]:
+              - generic [ref=e533]: €108
+              - generic [ref=e534]: over · first since Feb
+            - generic [ref=e535]: Suggestion · budget rebalance
+            - generic [ref=e536]:
+              - link "Move €60" [ref=e537] [cursor=pointer]:
+                - /url: "#"
+              - link "Leave it" [ref=e538] [cursor=pointer]:
+                - /url: "#"
+      - region "Notices" [ref=e539]:
+        - generic [ref=e540]:
+          - generic [ref=e541]:
+            - generic [ref=e542]: § viii
+            - generic [ref=e543]:
+              - heading "Notices" [level=3] [ref=e544]
+              - generic [ref=e545]: 4 items this fortnight · ordered by date
+          - link "Mark all read →" [ref=e547] [cursor=pointer]:
+            - /url: "#"
+        - list [ref=e548]:
+          - listitem [ref=e549]:
+            - generic [ref=e550]: Tariff change · 1 May
+            - generic [ref=e551]:
+              - text: Vattenfall raised its tariff by
+              - strong [ref=e552]: 3.2%
+              - text: .
+              - emphasis [ref=e553]: Monthly utilities tick up by roughly €2.40.
+            - link "Review" [ref=e554] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e555]:
+            - generic [ref=e556]: Due · 14 May
+            - generic [ref=e557]:
+              - strong [ref=e558]: Adobe Creative Cloud
+              - text: renews for €59.99 in 3 days.
+              - emphasis [ref=e559]: You used it twice in April — still needed?
+            - link "Manage" [ref=e560] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e561]:
+            - generic [ref=e562]: Due · 18 May
+            - generic [ref=e563]:
+              - strong [ref=e564]: AppleCare+
+              - text: renews for €9.99.
+              - emphasis [ref=e565]: Covers iPhone 15 Pro · auto-renews unless cancelled.
+            - link "Manage" [ref=e566] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e567]:
+            - generic [ref=e568]: Milestone · 10 May
+            - generic [ref=e569]:
+              - text: Cash balance covers
+              - strong [ref=e570]: 4 months
+              - text: of expenses, up from 3 at quarter start.
+              - emphasis [ref=e571]: Above the conservative 3-month minimum.
+            - link "View runway" [ref=e572] [cursor=pointer]:
+              - /url: "#"
+    - contentinfo [ref=e573]:
+      - generic [ref=e576]:
+        - strong [ref=e577]: 4 accounts
+        - text: synced · 09.42 CET
+      - generic [ref=e578]:
+        - generic [ref=e579]:
+          - text: Net
+          - strong [ref=e580]: €84,212.40
+          - generic [ref=e581]: ▲
+          - text: €1,420 today
+        - generic [ref=e582]: ·
+        - generic [ref=e583]:
+          - text: Spending
+          - strong [ref=e584]: €2,914
+          - text: of
+          - strong [ref=e585]: €3,800
+          - text: ·
+          - emphasis [ref=e586]: 23 days budgeted
+        - generic [ref=e587]: ·
+        - generic [ref=e588]:
+          - text: Next bill
+          - strong [ref=e589]: Adobe €59.99
+          - text: in 3 days
+      - generic [ref=e590]:
+        - generic [ref=e591]: ⌘ KSearch
+        - generic [ref=e592]: ⌘ NNew
+        - generic [ref=e593]: GGo to
+        - generic [ref=e594]: "?Help"
+  - dialog "New transfer" [ref=e674]:
+    - banner [ref=e675]:
+      - generic [ref=e676]:
+        - generic [ref=e677]: Compact compose · form
+        - generic [ref=e678]: New transfer
+      - button "Close" [active] [ref=e679] [cursor=pointer]: ×
+    - generic [ref=e681]:
+      - generic [ref=e682]:
+        - generic [ref=e683]:
+          - generic [ref=e685]:
+            - text: Checking
+            - generic [ref=e686]: ··2814 · available
+          - generic [ref=e687]: €4,820.71
+        - generic [ref=e688]:
+          - generic [ref=e690]:
+            - text: Savings
+            - generic [ref=e691]: TR · target account
+          - generic [ref=e692]: €6,200.00
+      - generic [ref=e693]:
+        - generic [ref=e694]:
+          - generic [ref=e695]: Amount
+          - textbox "Amount" [ref=e696]: € 250.00
+        - generic [ref=e697]:
+          - generic [ref=e698]: Date
+          - textbox "Date" [ref=e699]: 14 May 2026
+        - generic [ref=e700]:
+          - generic [ref=e701]: Note
+          - textbox "Note" [ref=e702]: Emergency reserve sweep
+        - generic [ref=e703]:
+          - 'checkbox "Log as ledger entry category: Transfer" [checked] [ref=e704]'
+          - text: Log as ledger entry
+          - generic [ref=e705]: "category: Transfer"
+      - button "Review transfer" [ref=e707] [cursor=pointer]

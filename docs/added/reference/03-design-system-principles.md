@@ -2,44 +2,55 @@
 
 Synthesized from Design System Book chapters 4, 5, 6, 7, 10. Filtered to actionable takeaways for this project. Read alongside `01-token-extraction.md` (raw values) and `02-component-catalog.md` (component inventory) — both in this `reference/` folder.
 
+**Ch 3.1 validation note:** validated on 2026-05-13 against `docs/added/dsb/` plus the completed Page 1 work in `docs/added/sessions/ch-2.3-organisms.md` and `docs/added/review/ch-2.3-organism-mockup-deep-audit.md`.
+
+**Post-review correction:** Page 1 `As-is` remains a locked, source-faithful baseline. The `Proposed` page is different: it must become a ship-ready, tokenized design-system page. Use the DSB foundation → alias → mapping architecture for Proposed, including component-specific mapping tokens where components consume values. Ch 3.1 produced only an initial scaffold; Ch 3.2-Ch 3.6 complete the real Proposed system.
+
 ---
 
 ## 1. Token Architecture
 
-### Three-layer model (Ch 7)
+### Layered model for Proposed (Ch 7)
 
-| Layer | What it holds | Figma collection | Example |
-|-------|---------------|-------------------|---------|
-| **Foundation** | Raw values — every color, size, spacing number | `Color - 1. Foundation`, `Size - 1. Foundation` | `warm/80/94` → `#f2eade` |
-| **Alias** | Semantic names referencing foundations | `Color - 2. Alias`, `Size - 2. Alias` | `paper/default` → `{warm/80/94}` |
-| **Mapping** | Component-scoped tokens referencing aliases | `Color - 3. Mapping`, `Size - 3. Mapping` | `sidebar/bg/default` → `{paper/deep}` |
+The DSB architecture is foundation → alias → mapping. For Page 1 it is intentionally not applied, because Page 1 is evidence. For `Proposed`, it is the required structure.
 
-Typography skips the mapping layer — composite text styles serve as mapping. Create foundation variables for raw sizes and weights, alias variables for semantic roles (`body/default`, `heading/section`), then build Figma text styles directly from aliases.
+| Layer | Use in The Ledger | Figma expression |
+|-------|-------------------|------------------|
+| **Evidence** | Raw Page 1 values from the HTML and local `as-is/` styles. These are not normalized or rebound. | Existing `as-is/` styles only |
+| **Foundation** | Proposed raw values: color ramps and modes, spacing numbers, rhythm fractions, dimensions, typography primitives, rule widths, radius, and focus metrics. | `Proposed * - 1. Foundations` collections |
+| **Alias** | Semantic choices designers should actually choose: paper, ink, rule, accent, focus, rhythm, density, type roles, shell dimensions. | `Proposed * - 2. Aliases` collections |
+| **Mapping** | Component-level endpoints consumed by components and variants. | `Proposed * - 3. Mappings` collections |
+
+Composite proposed text styles serve as designer-facing typography tokens. They should be backed by typography foundation/alias variables where Figma supports variable binding, and documented where text-style internals cannot be bound through the current workflow.
 
 ### Naming conventions
 
-**Color aliases:** `{role}/{usage}/{element}/{strength}/{context}/{state}`
-- Segments omitted when default: `paper/default` not `paper/default/default/default/default/default`
-- Ledger colors map to 4 roles: `paper` (backgrounds), `ink` (foreground), `rule` (dividers), `accent` (semantic color)
-- Accent sub-roles: `accent/debit` (red), `accent/credit` (blue), `accent/warning` (gold), `accent/confirm` (olive)
+**Color aliases:** `{role}/{purpose}` or `{role}/{purpose}/{state}`.
+- Keep names short where the role already carries meaning: `paper/canvas`, `ink/primary`, `rule/subtle`, `accent/debit`.
+- Use state only when the value is stateful: `paper/interactive/hover`, `focus/ring`.
+- Keep the warm paper/ink discipline from the source. Do not introduce cool neutral greys.
 
-**Mapping tokens:** `{component}/{role}/{variant}/{element}/{context}/{state}`
-- Example: `ledger-row/ink/default/amount/debit/default` → `{accent/debit/default}`
-- Example: `sidebar-nav/paper/default/bg/default/hovered` → `{paper/sunk}`
+**Spacing aliases:** classify by scale and purpose.
+- Micro values handle hairlines, rule widths, focus offsets, icon gaps, and optical nudge values.
+- Meso values handle component padding, row interiors, dense list gaps, and section-header relationships.
+- Macro values handle page padding, column gutters, and section-to-section spacing.
 
-**Spacing aliases:** flatten responsive modes into single tokens
-- `space/section-pad` → resolves to 20px (desktop), can change per mode
-- `space/gap/tight` → 4px, `space/gap/default` → 8px, etc.
+**Mapping tokens:** `{component}/{part}/{property}/{state}` or `{component}/{part}/{state}`.
+- Example: `button/primary/surface/enabled` → `{paper/ink}` or `{accent/debit}` depending on the component decision.
+- Example: `sidebar/nav-item/bar/active` → `{accent/debit}`.
+- Create mappings as components are retokenized. Every Proposed component should bind through aliases or mappings rather than literal values.
 
 ### What The Ledger needs
 
-The as-is HTML defines 19 color custom properties, 3 layout dimensions, and ~18 distinct padding values with no coherent scale. For the proposed page:
+The as-is HTML defines 19 color custom properties, 3 layout dimensions, and many fractional spacing and type values. For the proposed page:
 
-1. **Foundation:** 19 oklch→hex color values + normalized spacing scale (4px base: 4, 8, 12, 16, 20, 24, 32) + type size scale
-2. **Alias:** semantic names for paper/ink/rule/accent roles, spacing by purpose, type by role
-3. **Mapping:** per-component tokens only where a component needs to override the alias (e.g., sidebar uses `paper-deep` not `paper` for background)
-
-The as-is page uses raw hex values directly — no variable system.
+1. Preserve Page 1 as raw evidence. Do not edit, rename, or normalize existing `as-is/` styles.
+2. Normalize only the duplicated `Proposed` page and its new `proposed/` styles and variables.
+3. Build the Proposed token network before redesigning feature flows.
+4. Keep the color palette close to source because it already encodes the product metaphor and semantic red/blue/gold/olive rules, but route it through foundation, alias, and mapping layers so dark mode can be tested by changing foundations.
+5. Normalize spacing and typography more aggressively because the extracted values include arbitrary 7/9/11/13/22/26px and 9.5/10.5/11.5/12.5px clusters.
+6. Split horizontal spacing from vertical rhythm where useful: horizontal spacing can use a compact grid, while vertical rhythm derives from body line-height multiples and documented fractions.
+7. Proposed components must be self-contained: nested instances inside Proposed point to Proposed-local masters, not Page 1 `As-is` masters.
 
 ---
 
@@ -94,24 +105,36 @@ When an atom (button, chip) sits inside a molecule (section-header), wrap it in 
 
 ### Type scale approach
 
-The Ledger uses 28+ distinct font sizes — many fractional (9.5px, 10.5px, 11.5px, 12.5px). For the proposed page, normalize to a fixed-step scale anchored at 16px base. Suggested scale using √2 minor third (factor ~1.189):
+The Ledger is a dense finance dashboard with an editorial serif voice. The Proposed system should not force a generic 16px SaaS base across every surface. Use a dense-app scale that improves legibility while staying close to the source:
 
-| Step | Size | Round to | Usage |
-|------|------|----------|-------|
-| -3 | 9.5px | 10px | Smallest labels (min viable — guardrails say body ≥13px, but labels are exempt) |
-| -2 | 11.3px | 11px | Metadata, eyebrows |
-| -1 | 13.4px | 13px | Small body, sidebar text |
-| 0 | 16px | 16px | Base body |
-| 1 | 19px | 19px | Large body, sub-headings |
-| 2 | 22.6px | 23px | Section headings |
-| 3 | 26.9px | 27px | Page title |
-| 4+ | 32–116px | fluid | Hero display (clamp range) |
+| Role | Proposed size / line-height | Source cluster normalized |
+|------|-----------------------------|---------------------------|
+| `label/micro` | 10 / 12 | 8.5, 9, 9.5, 10 |
+| `label/small` | 11 / 14 | 10.5, 11, 11.5 |
+| `label/default` | 12 / 16 | 12, 12.5 |
+| `body/small` | 13 / 18 | 12.5, 13 |
+| `body/default` | 14 / 20 | 13.5, 14 |
+| `body/comfortable` | 16 / 24 | 15, 16 and longer copy contexts |
+| `heading/subsection` | 20 / 24 | 18, 20 |
+| `heading/section` | 24 / 28 | clamp 20-26 |
+| `display/small` | 32 / 36 | 27, 28, display stat cluster |
+| `display/hero` | fluid 56-112, fixed desktop specimen 112 / 96 | clamp 56-116 |
 
-Note: the exact scale is a Phase 1.2 decision. This table is directional.
+This is intentionally a tuned stepped scale rather than a pure modular ratio. It follows DSB Ch 10's advice to pair every size with a line-height and to let dense app UI use smaller body sizes when the audience and content density justify it.
 
 ### Vertical trim for controls
 
 Single-line UI elements (buttons, chips, input fields) use vertical trim or manual padding to center text optically. Line-height on these should be `1` (100%), with padding controlling the hit area. This avoids the "too much space above/below" problem with display line-heights on buttons.
+
+### Vertical rhythm
+
+Use `body/default` line-height `20px` as the default vertical rhythm unit. The Proposed system should check rows, lists, and sections against this rhythm without pretending every value must be an integer multiple:
+
+- `rhythm/base` = 20px.
+- `rhythm/half` = 10px for source-compatible local offsets.
+- 4px spacing values remain the micro-grid for padding, focus offsets, rules, and optical alignment.
+- Dense rows should land on 4px increments and stay explainable relative to the rhythm, e.g. 40px, 44px, 56px, 60px, 72px.
+- Explicit exceptions: 1px hairlines, 1.5-3px chart/bar marks, 5px/10px rhythm fractions, and single-line control trim.
 
 ### Fluid typography
 
@@ -119,14 +142,13 @@ Two kinds of responsive type:
 - **Scaled sizes** (hero, headings): use `clamp(min, preferred, max)` with viewport-relative preferred value
 - **Fixed sizes** (body, labels, metadata): stay constant across breakpoints
 
-Check clamp slopes at target breakpoints (1240, 1080, 960, 720px) to ensure smooth interpolation. If slope is too steep between two breakpoints, use piecewise clamp (different clamp per media query range).
+Check clamp values at 1680, 1240, 1080, 960, and 720px. Use single clamp values unless a role visibly overshoots at a breakpoint; piecewise clamp is available from DSB Ch 5/10 if Proposed components prove the need.
 
 ### Typography tokens in Figma
 
-- **Foundation variables:** raw sizes (10, 11, 13, 16, 19, 23, 27, 32…), raw weights (300, 400, 500, 600, 700), raw line-heights (1, 1.15, 1.4, 1.6)
-- **Alias variables:** `type/body/size` → `{16}`, `type/heading-section/size` → `{23}`, `type/label/weight` → `{600}`
-- **Composite text styles** (Figma text styles, not variables): `Body/Default`, `Heading/Section`, `Label/Small` — each binds family + size alias + weight alias + line-height alias + letter-spacing
-- No mapping layer for typography — the composite text style IS the mapping
+- **Foundation variables:** raw sizes, weights, line-heights, and rhythm values useful for inspection.
+- **Composite text styles:** `proposed/display/hero`, `proposed/heading/section`, `proposed/body/default`, `proposed/label/small`, etc.
+- Figma variables and text styles cannot encode every typographic detail equally well through the current workflow. Bind what Figma supports, and document OpenType, optical size, SOFT axis, case intent, and relative cents treatment in style descriptions and session logs.
 
 ---
 
@@ -198,11 +220,16 @@ Only the 960px collapsed sidebar state needs a Figma variant. The rest is docume
 
 ### Figma variable modes
 
-If using modes for responsive values:
-- Collection: `Size - 2. Alias`
-- Mode 1: `Desktop` (default)
-- Mode 2: `Compact` (960px and below)
-- Only spacing and type size aliases that actually change between modes need two values
+Add modes only where they support real Proposed decisions:
+
+- Color foundations should include Light and Dark value modes so aliases and mappings can inherit mode changes.
+- Responsive typography and dimension foundations may use viewport modes when a component needs them.
+- Density modes are optional until atoms/molecules prove that Compact or Relaxed needs a formal token mode.
+
+For a future density axis:
+- `Default` remains the proposed baseline.
+- `Compact` can reduce meso row padding and macro section gaps while preserving 24px minimum targets and readable text floors.
+- `Relaxed` can increase macro spacing for presentation/review surfaces, but should not become the main dashboard default.
 
 ---
 
@@ -252,9 +279,7 @@ The 3 unused tokens (--paper-edge, --red-soft, --blue-soft) are omitted.
 
 #### Text styles (`as-is/`)
 
-Derived from distinct typography treatments in the HTML. Each style captures the exact CSS values — no normalization.
-
-This is a starting inventory of the most reused typography patterns. Additional styles may be added during Figma construction as edge cases surface. All values are exact from the CSS — no normalization.
+Derived from distinct typography treatments in the HTML. Each style captures the exact CSS values — no normalization. The Figma `Typography Samples — As-is` section labels each sample with the source CSS selector(s), so semantic style names remain auditable.
 
 | Style name | Family | Size | Weight | LH | LS | Other | Usage |
 |-----------|--------|------|--------|-----|-----|-------|-------|
@@ -267,12 +292,15 @@ This is a starting inventory of the most reused typography patterns. Additional 
 | `as-is/label-kicker` | Newsreader | 10.5px | 600 | — | 0.22em | uppercase | Hero kicker, section eyebrows |
 | `as-is/label-sidebar` | Newsreader | 9.5px | 700 | — | 0.24em | uppercase | Sidebar nav labels |
 | `as-is/label-eyebrow` | Newsreader | 10px | 600–700 | — | 0.14–0.22em | uppercase | Goal/notice/status eyebrows |
-| `as-is/label-action` | Newsreader | 10.5px | 600 | — | 0.10–0.14em | uppercase | Action links, edit links |
-| `as-is/label-chip` | Newsreader | 10.5px | 600 | — | 0.10em | uppercase | Period tabs, filter chips |
+| `as-is/label-action` | Newsreader | 10.5px | 600 | — | 0.10–0.14em | uppercase | Legacy/general small CTA treatment; prefer `link-action` modes for Page 1 molecules |
+| `as-is/label-link-action` | Newsreader | 11px | 600 | — | 0.14em | uppercase | `.link-action` |
+| `as-is/label-chip` | Newsreader | 11px | 600 | — | 0.12–0.14em | uppercase | `.tabs label`, `.chips label` |
 | `as-is/body-default` | Newsreader | 13.5px | 400 | 1.55 | 0 | opsz 16 | Coach body text |
 | `as-is/body-sidebar` | Newsreader | 13px | 400 | — | -0.005em | opsz 14, SOFT 80 | Sidebar account names |
 | `as-is/body-table` | Newsreader | 13px | 500 | 1.2 | — | — | Ledger entry names |
+| `as-is/tx-tag` | Newsreader | 9.5px | 400 | 1 | 0.14em | italic, uppercase | `.tx-tag` transaction metadata |
 | `as-is/body-btn` | Newsreader | 12.5px | 500 | — | 0.02em | — | Button labels |
+| `as-is/body-btn-sm` | Newsreader | 11.5px | 500 | — | 0.02em | — | `.btn-sm` |
 | `as-is/body-small` | Newsreader | 11px | — | 1.4 | 0.04em | — | Small body, descriptions |
 | `as-is/body-meta` | Newsreader | 10.5px | — | — | — | italic | Metadata, timestamps |
 | `as-is/number-table` | Fraunces | 14px | — | — | — | opsz 30, SOFT 25–30, tabular-nums | Ledger/budget amounts |
@@ -281,11 +309,29 @@ This is a starting inventory of the most reused typography patterns. Additional 
 | `as-is/input` | Newsreader | 13px | 400 | — | 0 | — | Search input |
 | `as-is/input-placeholder` | Newsreader | 13px | 400 | — | 0 | italic | Search placeholder |
 | `as-is/statusbar` | Newsreader | 11.5px | — | — | — | — | Status bar text |
+| `as-is/kbd` | Newsreader | 10px | 400 | — | 0.04em | — | `.topbar-search kbd`, `.statusbar .shortcuts kbd` |
+| `as-is/section-num` | Fraunces | 16px | 400 | 1 | — | italic, opsz 24, SOFT 80 | `.section-head .section-num`, `.topbar-title .section-mark` |
+| `as-is/section-sub` | Newsreader | 12.5px | 400 | — | — | italic | `.section-sub` |
+| `as-is/roman` | Fraunces | 13px | 400 | 1 | — | italic, opsz 14, SOFT 80 | `.roman`, `.goal-eyebrow .roman` |
+| `as-is/row-action-link` | Newsreader | 10.5px | 500 | 1 | 0.08em | uppercase | Reveal-on-parent-hover actions such as `.row-actions a`; reused for consolidated reveal action mode |
+| `as-is/nav-hint` | Newsreader | 11px | 400 | 1 | 0 | tabular-nums | `.sidebar-nav .hint` |
+| `as-is/nav-hint-strong` | Newsreader | 11px | 700 | 1 | 0 | tabular-nums | `.sidebar-nav .hint.alert`, `.sidebar-nav .hint.warn` |
+| `as-is/distribution-name` | Newsreader | 14px | 500 | 1.2 | 0 | — | `.distribution .name` |
+| `as-is/distribution-total-name` | Newsreader | 13.5px | 500 | 1.2 | 0 | italic | `.distribution .total .name` |
+| `as-is/legend-summary` | Newsreader | 12px | 400 | 1.4 | 0 | italic | `.legend .summary` |
+| `as-is/marginalia` | Newsreader | 12.5px | 400 | 1.45 | 0 | italic | `.marginalia` |
+| `as-is/marginalia-arrow` | Newsreader | 12.5px | 600 | 1 | 0 | — | `.marginalia::before` |
+| `as-is/hero-delta-value` | Fraunces | 15px | 400 | 1 | 0 | tabular-nums | `.hero-delta .val` |
+| `as-is/notice-body` | Newsreader | 13px | 400 | 1.45 | 0 | — | `.alerts .alert-body` |
+| `as-is/goal-pace` | Newsreader | 11px | 400 | 1.3 | 0 | italic | `.goal-pace` |
+| `as-is/coach-kind` | Newsreader | 10px | 700 | 1 | 0.18em | uppercase | `.coach-kind` |
 
-\* Hero uses `clamp(56px, 8.5vw, 116px)`. At 1440px viewport = 116px. Figma gets the max value (desktop reference frame).
-† Goals use `clamp(22px, 2.1vw, 27px)`. At 1440px = 27px. Figma gets the max value.
+\* Hero uses `clamp(56px, 8.5vw, 116px)`. At the 1680px Page 1 reference, Figma gets the max value.
+† Goals use `clamp(22px, 2.1vw, 27px)`. At the 1680px Page 1 reference, Figma gets the max value.
 
 Dashes (—) mean the value inherits from the element's context or isn't explicitly set in CSS. These will be resolved to concrete values during Figma construction by checking computed styles.
+
+Ch 2.2 correction note: duplicate molecule-only action text styles (`as-is/fiscal-action-link`, `as-is/alert-action-link`) were retired after `link-action` was consolidated to `Mode=Visible/Reveal` plus content slots. Keep source-specific text styles only where the CSS treatment is meaningfully distinct, such as `.tx-tag`.
 
 ### Checklist — every component, both pages
 
@@ -294,7 +340,7 @@ Dashes (—) mean the value inherits from the element's context or isn't explici
 - [ ] Identify: name, atomic level, parent compositions (from `02-component-catalog.md`)
 - [ ] Structural anatomy: layer tree sketch (container → slots → elements)
 - [ ] Variant axes: which properties create variants? (from component catalog state inventory)
-- [ ] State list: which interactive states exist in the HTML CSS? (hover, focus-visible, active, checked, disabled)
+- [ ] State list: Page 1 maps only source CSS states; Proposed interactive components must include enabled/default, hover, focus, pressed, and disabled.
 
 #### During building
 
@@ -304,82 +350,78 @@ Dashes (—) mean the value inherits from the element's context or isn't explici
 - [ ] Boolean properties for optional slots (icons, badges, hints)
 - [ ] Text content exposed as component text properties
 - [ ] Atoms inside molecules wrapped in `_slot-wrapper` frames
+- [ ] Parent components use nested atom/helper instances rather than duplicated internals
+- [ ] If a required lower-level component is missing, mark it in Figma and the session log before building the parent
+- [ ] Missing atoms/helpers are not silently redrawn inline inside molecules or organisms
+- [ ] Parent variants cover only parent-owned state changes; nested child state combinations stay on the nested child component
+- [ ] CSS one-sided borders use individual Figma stroke weights, not decorative rectangle layers
 - [ ] **As-is:** color fills use `as-is/` color styles, text uses `as-is/` text styles, spacing is exact pixel values
-- [ ] **Proposed:** color fills use Figma variables (alias/mapping), text uses proposed text styles, spacing uses variables
+- [ ] **Proposed:** fills, strokes, spacing, dimensions, rule widths, radius, and focus geometry use proposed alias/mapping variables where Figma supports binding; text uses proposed text styles and type variables where supported.
 
 #### After building
 
 - [ ] Variant matrix: annotated grid showing all state/variant combinations
+- [ ] Variant matrix is bounded: no parent × child Cartesian state explosion unless source explicitly requires it
 - [ ] Visual verification against HTML screenshot at same viewport width
-- [ ] States verified: every interactive state from the CSS has a corresponding variant
+- [ ] States verified: Page 1 source states are covered; Proposed interactive components include the full five-state model unless a documented reason excludes a state.
 
 ---
 
 ## 7. Ledger-Specific Decisions
 
-Decisions derived from cross-referencing book principles with extracted tokens and guardrails. These are proposals for Phase 1.2 and Phase 2 execution.
+Decisions derived from cross-referencing book principles with extracted tokens, guardrails, completed Page 1 work, and the post-review Proposed scope correction. These are starting points for the Ch 3.2-Ch 3.6 Proposed system, not rules for modifying Page 1.
 
 ### Color token structure
 
-```
-Foundation (Collection: "Color - 1. Foundation")
-├── warm/
-│   ├── 80/94  → #f2eade (paper)
-│   ├── 80/96  → #f7f1e8 (paper-soft)
-│   ├── 76/91  → #eae0d2 (paper-deep)
-│   ├── 74/88  → #e1d6c7 (paper-sunk)
-│   ├── 75/80  → #c6bcaf (rule)
-│   ├── 78/86  → #d8d0c4 (rule-soft)
-│   ├── 50/18  → #190f0a (ink)
-│   ├── 50/36  → #433b37 (ink-soft)
-│   ├── 55/54  → #746d68 (ink-mute)
-│   └── 60/68  → #9d9792 (ink-faint)
-├── red/
-│   ├── 30/40  → #7f2117
-│   └── 35/91  → #f4dbd4 (wash)
-├── blue/
-│   ├── 225/38 → #17495a
-│   └── 220/92 → #d7e8ee (wash)
-├── gold/
-│   └── 78/60  → #a17833
-└── olive/
-    └── 130/48 → #50663a
+The flat Ch 3.1 `Proposed / Color` scaffold has been superseded and renamed `Legacy Ch 3.1 Proposed / Color (scaffold)` in Figma. Active Proposed color work uses the layered Ch 3.2 collections:
 
-Alias (Collection: "Color - 2. Alias")
-├── paper/default      → {warm/80/94}
-├── paper/soft         → {warm/80/96}
-├── paper/deep         → {warm/76/91}
-├── paper/sunk         → {warm/74/88}
-├── ink/default        → {warm/50/18}
-├── ink/soft           → {warm/50/36}
-├── ink/mute           → {warm/55/54}
-├── ink/faint          → {warm/60/68}
-├── rule/default       → {warm/75/80}
-├── rule/soft          → {warm/78/86}
-├── accent/debit       → {red/30/40}
-├── accent/debit/wash  → {red/35/91}
-├── accent/credit      → {blue/225/38}
-├── accent/credit/wash → {blue/220/92}
-├── accent/warning     → {gold/78/60}
-├── accent/confirm     → {olive/130/48}
-└── focus/ring         → {warm/50/18}
+- `Proposed Color - 1. Foundations` with Light and Dark modes.
+- `Proposed Color - 2. Aliases` for paper, ink, rule, accent, focus, and semantic status choices.
+- `Proposed Color - 3. Mappings` for component parts and states.
+
+```
+Proposed Color - 2. Aliases
+├── paper/canvas       → #eae0d2 (source --paper-deep)
+├── paper/surface      → #f2eade (source --paper)
+├── paper/interactive  → #f7f1e8 (source --paper-soft)
+├── paper/sunken       → #e1d6c7 (source --paper-sunk)
+├── ink/primary        → #190f0a (source --ink)
+├── ink/secondary      → #433b37 (source --ink-soft)
+├── ink/muted          → #746d68 (source --ink-mute)
+├── ink/faint          → #9d9792 (source --ink-faint)
+├── rule/strong        → #190f0a (source --ink as structural border)
+├── rule/default       → #c6bcaf (source --rule)
+├── rule/subtle        → #d8d0c4 (source --rule-soft)
+├── accent/debit       → #7f2117 (source --red)
+├── accent/debit/wash  → #f4dbd4 (source --red-wash)
+├── accent/credit      → #17495a (source --blue)
+├── accent/credit/wash → #d7e8ee (source --blue-wash)
+├── accent/warning     → #a17833 (source --gold)
+├── accent/confirm     → #50663a (source --olive)
+└── focus/ring         → #190f0a (warm high-contrast focus)
 ```
 
-Mapping tokens created per-component as needed during Phase 2 construction.
+The source's unused `--paper-edge`, `--red-soft`, and `--blue-soft` remain documented evidence only until a proposed component needs them.
 
 ### Spacing normalization target
 
-| Alias | Value | Replaces |
-|-------|-------|----------|
-| `space/micro` | 4px | 3px, 4px, 5px uses |
-| `space/tight` | 8px | 7px, 8px, 9px, 9.5px, 10px |
-| `space/default` | 12px | 11px, 12px, 12.5px, 13px |
-| `space/comfortable` | 16px | 14px, 16px uses |
-| `space/section` | 20px | 18px, 20px (section padding per guardrails) |
-| `space/loose` | 24px | 22px, 24px uses |
-| `space/wide` | 32px | 28px, 32px uses |
+| Alias | Value | Classification | Replaces / use |
+|-------|------:|----------------|----------------|
+| `rule/hairline` | 1px | micro | Standard dividers |
+| `rule/accent` | 2px | micro | Coach top rules, active nav |
+| `space/micro/4` | 4px | micro | Dots, tiny offsets, compact icon gaps |
+| `space/micro/6` | 6px | micro | Existing button/icon gaps where 8px is too loose |
+| `space/micro/8` | 8px | micro | 7/8/9px gaps and small padding |
+| `space/meso/12` | 12px | meso | 11/12/13px component padding |
+| `space/meso/16` | 16px | meso | Section-header gaps, row group gaps |
+| `space/meso/20` | 20px | meso | Guardrail section padding, body rhythm base |
+| `space/meso/24` | 24px | meso | 22/24/26px local layout gaps |
+| `space/macro/32` | 32px | macro | 28/32px section gaps |
+| `space/macro/40` | 40px | macro | Desktop main/topbar side padding |
+| `space/macro/48` | 48px | macro | Middle/double desktop column gaps |
+| `space/macro/64` | 64px | macro | Hero desktop column gap |
 
-This 4px-base scale covers all current usage. Exact mapping from old→new values is a Phase 1.2 task.
+Use the 4px grid as the default. Keep 6px as an explicit micro exception because it appears repeatedly in source controls and often centers serif labels better than 8px.
 
 ### Typography normalization target
 
@@ -389,20 +431,23 @@ Proposed style categories for Figma text styles:
 
 | Style name | Family | Size | Weight | LH | LS | Usage |
 |-----------|--------|------|--------|-----|-----|-------|
-| `Display/Hero` | Fraunces | clamp(56–116px) | 300 | 100% | -0.02em | Hero balance |
-| `Display/Large` | Fraunces | 32px | 400 | 110% | -0.01em | — |
-| `Heading/Section` | Fraunces | 23px | 400 | 115% | 0 | Section headings (§) |
-| `Heading/Sub` | Fraunces | 19px | 500 | 120% | 0 | Sub-section headings |
-| `Body/Default` | Newsreader | 16px | 400 | 150% | 0 | Body text, coach notes |
-| `Body/Small` | Newsreader | 13px | 400 | 150% | 0.01em | Sidebar body, descriptions |
-| `Label/Default` | Newsreader | 13px | 600 | 100% | 0.06em | Button labels, tab labels |
-| `Label/Small` | Newsreader | 11px | 500 | 100% | 0.08em | Eyebrows, metadata, pill text |
-| `Label/Micro` | Newsreader | 10px | 600 | 100% | 0.10em | Smallest labels (sparingly) |
-| `Number/Table` | Fraunces | 16px | 400 | 100% | 0 | Ledger amounts (tabular-nums) |
-| `Number/KPI` | Fraunces | 19px | 500 | 100% | 0 | KPI figures |
-| `Number/Cents` | Fraunces | 0.42em | 400 | 100% | 0 | Cents suffix (muted) |
+| `proposed/display/hero` | Fraunces | 112px desktop specimen | 400 | 96px | -0.02em | Hero balance; document clamp 56-112 |
+| `proposed/display/small` | Fraunces | 32px | 400 | 36px | -0.01em | Large stats |
+| `proposed/heading/section` | Fraunces | 24px | 400 | 28px | 0 | Section headings |
+| `proposed/heading/subsection` | Fraunces | 20px | 400 | 24px | 0 | Panel titles |
+| `proposed/body/comfortable` | Newsreader | 16px | 400 | 24px | 0 | Longer explanatory copy |
+| `proposed/body/default` | Newsreader | 14px | 400 | 20px | 0 | Dense dashboard body and row labels |
+| `proposed/body/small` | Newsreader | 13px | 400 | 18px | 0 | Sidebar/account/meta body |
+| `proposed/label/default` | Newsreader | 12px | 600 | 16px | 0.5px | Buttons, tabs, chips |
+| `proposed/label/small` | Newsreader | 11px | 600 | 14px | 0.55px | Eyebrows and row actions |
+| `proposed/label/micro` | Newsreader | 10px | 700 | 12px | 0.6px | Sparing dense labels |
+| `proposed/number/table` | Fraunces | 14px | 400 | 20px | 0 | Table and budget amounts |
+| `proposed/number/kpi` | Fraunces | 22px | 400 | 24px | 0 | KPI values |
+| `proposed/number/cents` | Fraunces | 0.42em | 400 | 1 | 0 | Cents suffix; document as relative exception |
 
-Exact sizes finalized in Phase 1.2 after clamp slope audit.
+All financial number styles require lining tabular numerals. Fraunces optical-size/SOFT settings should remain documented with styles where Figma exposes them; if not, include them in style descriptions and the session log.
+
+Figma implementation note: bound `letterSpacing` variables resolve as pixels. Do not enter the conceptual label tracking values as `8`, `10`, or `12`; those become unusable `px` values in Figma. Use the current pixel equivalents above unless a later visual pass deliberately changes the label styles.
 
 ---
 
